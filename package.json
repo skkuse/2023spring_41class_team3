@@ -1,11 +1,16 @@
 {
   "devDependencies": {
     "commitizen": "^4.3.0",
-    "cz-customizable": "^7.0.0"
+    "cz-customizable": "^7.0.0",
+    "husky": "^8.0.0"
   },
   "config": {
     "commitizen": {
       "path": "cz-customizable"
     }
+  },
+  "dependencies": {},
+  "scripts": {
+    "prepare": "husky install"
   }
 }
