@@ -11,10 +11,11 @@ then
 fi
 
 current_branch=$(git rev-parse --abbrev-ref HEAD)
+current_branch=""
 
 if [ "$current_branch" == "main" -o "$current_branch" == "dev" ]
 then
-    echo "do not push in dev or main branch"
+    echo "Do not push in dev or main branch"
     exit 1
 fi
 
