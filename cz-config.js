@@ -1,23 +1,24 @@
 module.exports = {
   types: [
-    { value: "feat", name: "feat:\tAdd a new feature" },
-    { value: "docs", name: "docs:\tAdd or update documentation" },
+    { value: "feat", name: "feat: Add a new feature" },
+    { value: "docs", name: "docs: Add or update documentation" },
     {
       value: "style",
-      name: "style:\tAdd or update code format (not updation production, UI,UX code)",
+      name: "style: Add or update code format (not updation production, UI,UX code)",
     },
-    { value: "fix", name: "fix:\tCode change that neither fixes a bug nor adds a feature" },
+    { value: "fix", name: "fix: Code change that neither fixes a bug nor adds a feature" },
     {
       value: "test",
-      name: "test:\tCode change related with tests cases",
+      name: "test: Code change related with tests cases",
     },
     {
       value: "chore",
-      name: "chore:\tChanges to the build process or auxiliary tools\n\t\tand libraries such as documentation generation",
+      name: "chore: Changes to the build process or auxiliary tools and libraries such as documentation generation",
     },
   ],
-  allowCustomScopes: false,
-  allowBreakingChanges: ["feat", "fix"],
-  skipQuestions: ["body"],
+
+  scopes: [{ name: "front" }, { name: "back" }, { name: "common" }],
+  subjectSeparator: ": ",
+  skipQuestions: ["body", "footer"],
   subjectLimit: 100,
 };
