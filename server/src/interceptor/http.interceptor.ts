@@ -11,8 +11,8 @@ export class HttpLoggingInterceptor implements NestInterceptor {
 		const reqTime = Date.now();
 
 		const ctx = context.switchToHttp();
-		const req: Request = ctx.getRequest();
-		const res: Response = ctx.getResponse();
+		const req = ctx.getRequest<Request>();
+		const res = ctx.getResponse<Response>();
 		const [method, url, httpStatusCode] = [req.method, req.url, res.statusCode];
 
 		this.logger.log(`${method} ${url}`);
