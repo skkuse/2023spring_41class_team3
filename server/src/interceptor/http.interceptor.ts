@@ -3,21 +3,23 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
+export class HttpLoggingInterceptor implements NestInterceptor {
 	private readonly logger = new Logger('HTTP');
 
 	intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 		const reqTime = Date.now();
 
-		const req: Request = context.switchToHttp().getRequest();
-		const [method, url] = [req.method, req.url];
+		const ctx = context.switchToHttp();
+		const req: Request = ctx.getRequest();
+		const res: Response = ctx.getResponse();
+		const [method, url, httpStatusCode] = [req.method, req.url, res.status];
 
 		this.logger.log(`${method} ${url}`);
 
 		return next.handle().pipe(
 			tap(() => {
 				const resTime = Date.now();
-				this.logger.log(`[${resTime - reqTime}ms] ${method} ${url}`);
+				this.logger.log(`[${resTime - reqTime}ms] ${httpStatusCode} ${method} ${url}`);
 			})
 		);
 	}
