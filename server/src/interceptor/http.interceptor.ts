@@ -1,4 +1,5 @@
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler, Logger } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -12,7 +13,7 @@ export class HttpLoggingInterceptor implements NestInterceptor {
 		const ctx = context.switchToHttp();
 		const req: Request = ctx.getRequest();
 		const res: Response = ctx.getResponse();
-		const [method, url, httpStatusCode] = [req.method, req.url, res.status];
+		const [method, url, httpStatusCode] = [req.method, req.url, res.statusCode];
 
 		this.logger.log(`${method} ${url}`);
 
