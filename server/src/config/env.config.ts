@@ -6,5 +6,11 @@ export const envConfig: ConfigModuleOptions = {
 	envFilePath: process.env.NODE_ENV === 'deploy' ? 'deploy.env' : '.env',
 	// 루트 경로에서 .env 사용 (cross-env로 환경에 따른 .env 적용도 가능)
 
-	validationSchema: Joi.object({}),
+	validationSchema: Joi.object({
+		// .env 파일에 적용할 validation
+		MONGO_INITDB_ROOT_USERNAME: Joi.string().required(),
+		MONGO_INITDB_ROOT_PASSWORD: Joi.string().required(),
+		ME_CONFIG_MONGODB_ADMINUSERNAME: Joi.string().required(),
+		ME_CONFIG_MONGODB_ADMINPASSWORD: Joi.string().required(),
+	}),
 };
