@@ -10,6 +10,8 @@ export const envConfig: ConfigModuleOptions = {
 		// .env 파일에 적용할 validation
 		MONGO_INITDB_ROOT_USERNAME: Joi.string().required(),
 		MONGO_INITDB_ROOT_PASSWORD: Joi.string().required(),
+		MONGO_SERVER_IP: Joi.string().required(),
+		MONGO_SERVER_PORT: Joi.string().required(),
 		ME_CONFIG_MONGODB_ADMINUSERNAME: Joi.string().required(),
 		ME_CONFIG_MONGODB_ADMINPASSWORD: Joi.string().required(),
 	}),
