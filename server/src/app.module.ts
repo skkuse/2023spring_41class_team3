@@ -5,13 +5,12 @@ import { ConfigModule } from '@nestjs/config';
 import { envConfig } from '@config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CatModule } from './cat/cat.module';
+import { mongooseConfig } from './config/mongoose.config';
 
 @Module({
 	imports: [
 		ConfigModule.forRoot(envConfig),
-		MongooseModule.forRoot(
-			`mongodb://${process.env.MONGO_SERVER_IP}:${process.env.MONGO_SERVER_PORT}`
-		),
+		MongooseModule.forRootAsync(mongooseConfig),
 		CatModule,
 	],
 	controllers: [AppController],
