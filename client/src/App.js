@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from 'components/LoginModal';
 import LandingPage from 'pages/LandingPages/LandingPage';
 
-const App = () => {
+function App() {
 	const [user, setUser] = useState(null);
 
 	const handleLoginSuccess = (userInfo) => {
@@ -31,6 +31,6 @@ const App = () => {
 			</Routes>
 		</BrowserRouter>
 	);
-};
+}
 
 export default App;

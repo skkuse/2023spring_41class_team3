@@ -1,3 +1,5 @@
-const Footer = () => <footer />;
+function Footer() {
+	return <footer />;
+}
 
 export default Footer;

@@ -13,10 +13,12 @@ const headerLogoStyle = {
 	padding: '0 10px',
 };
 
-const Header = () => (
-	<header style={headerStyle}>
-		<img src={devNaviLogo} alt="devNavi logo" style={headerLogoStyle} />
-	</header>
-);
+function Header() {
+	return (
+		<header style={headerStyle}>
+			<img src={devNaviLogo} alt="devNavi logo" style={headerLogoStyle} />
+		</header>
+	);
+}
 
 export default Header;
