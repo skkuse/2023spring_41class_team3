@@ -21,11 +21,12 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
+		"src/**/*.{js,jsx,ts,tsx}": [
+			"eslint --fix",
+			"prettier --config ./prettierrc --write ./src/**/*.{js,jsx,ts,tsx}",
+			"git add ."
+		]
+	},
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
