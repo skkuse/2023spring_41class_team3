@@ -15,6 +15,7 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'react/prop-types': 'off',
 		'react/function-component-definition': [2, { namedComponents: ['function-declaration'] }],
+		'import/no-extraneous-dependencies': 'off',
 	},
 	settings: {
 		'import/resolver': {
