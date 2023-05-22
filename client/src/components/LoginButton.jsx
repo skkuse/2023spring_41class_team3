@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 import githubLogo from 'assets/images/logos/github-mark-white.png';
+import oauthLogin from 'api/auth';
 
 const LOGIN_MSG = 'Log in with GitHub';
 
@@ -25,14 +25,8 @@ const GithubLogo = styled.img`
 `;
 
 function LoginButton() {
-	const navigate = useNavigate();
-
-	const handleLoginClick = () => {
-		navigate('/login');
-	};
-
 	return (
-		<ButtonWrapper onClick={handleLoginClick}>
+		<ButtonWrapper onClick={() => oauthLogin('github')}>
 			<GithubLogo src={githubLogo} alt="github logo" />
 			{LOGIN_MSG}
 		</ButtonWrapper>
