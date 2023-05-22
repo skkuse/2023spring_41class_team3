@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const WORDS = "This is group 3's project in Introduciton to SE 2023 Spring";
+const WORDS = '해당 웹 서비스는 SE 2023 Spring의 group 3 프로젝트입니다';
 
 const IntroWrapper = styled.div`
 	justifycontent: center;
@@ -9,7 +9,7 @@ const IntroWrapper = styled.div`
 
 const Description = styled.div`
 	text-align: center;
-	font-size: 24px;
+	font-size: 20px;
 	color: #55565b;
 	width: 50rem;
 	margin: 2rem auto;
