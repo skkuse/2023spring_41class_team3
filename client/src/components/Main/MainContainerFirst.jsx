@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import mainbgImage from 'assets/images/imagesource/MainPage_background.png';
 import PSmodebutton from 'assets/images/imagesource/MainPage_PSModeButton.png';
+import CTmodebutton from 'assets/images/imagesource/MainPage_CodingTestButton.png';
 
 const DESCRIPTION1 = 'DevNavi는 코딩 연습과 코딩 테스트 시뮬레이션을 제공하는 웹페이지입니다.';
 const DESCRIPTION2 =
@@ -14,17 +15,18 @@ const IntroWrapper = styled.div`
 const Description = styled.div`
 	line-height=100%;
 	text-align: center;
-	font-size: 15px;
+	font-size: 1rem;
 	font-weight: bold;
 	color: #55565b;
-	width: 50rem;
-	margin: 2rem auto;
+	width: cover;
+	margin: 1.5rem 0.5rem;
+	white-space: normal;
 `;
 
 const Body = styled.div`
-	margin: 20px 50px;
+	margin: 40px 15px;
 	width: cover;
-	min-height: 70vh;
+	min-height: 45vh;
 	background-image: url(${mainbgImage});
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -32,16 +34,48 @@ const Body = styled.div`
 	border-radius: 50px;
 `;
 
-const PSModeButton = styled.div`
-	margin: 10px;
-	width: 50%;
-	min-height: 70vh;
+const SelectMode = styled.div`
+	line-height=100%;
+	text-align: center;
+	padding-top: 1rem;
+	font-size: 2.3rem;
+	font-weight: bold;
+	color: #55565b;
+	width: cover;
+	height: 40%;
+`;
 
+const ButtonContainer = styled.div`
+	width: 100%;
+	min-height: 45vh;
+	text-align: center;
+`;
+
+const PSModeButton = styled.button`
+	margin: 2rem;
+	width: 40%;
+	min-height: 45vh;
 	background-image: url(${PSmodebutton});
 	background-repeat: no-repeat;
-	background-size: 50% 50%;
+	background-size: 70%;
 	background-position: center center;
-	border-radius: 50px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+`;
+const CTModeButton = styled.button`
+	margin: 2rem;
+	width: 40%;
+	min-height: 45vh;
+	background-image: url(${CTmodebutton});
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center center;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
 `;
 
 function MainContainerFirst() {
@@ -49,10 +83,16 @@ function MainContainerFirst() {
 		<IntroWrapper>
 			<Description>
 				{DESCRIPTION1}
+				<br />
 				{DESCRIPTION2}
 			</Description>
 			<Body>
-				<PSModeButton />
+				<SelectMode>SELECT MODE</SelectMode>
+				{/* <PSModeButton /> */}
+				<ButtonContainer>
+					<PSModeButton />
+					<CTModeButton />
+				</ButtonContainer>
 			</Body>
 		</IntroWrapper>
 	);
