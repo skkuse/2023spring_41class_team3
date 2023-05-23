@@ -11,12 +11,12 @@ export interface OauthService {
 	 * @param authorizationCode social login으로 얻은 authorization code
 	 * @returns accessToken - social 인증으로 얻은 accessToken
 	 */
-	getAccessTokenByAuthorizationCode(authorizationCode: string): Promise<string>;
+	getAccessToken(authorizationCode: string): Promise<string>;
 
 	/**
 	 * accessToken으로 해당 social에 profile 조회 api를 통해 user 정보를 얻어 반환합니다.
 	 * @param accessToken
 	 * @returns oauthInfo
 	 */
-	getSocialInfoByAccessToken(accessToken: string): Promise<OauthInfo>;
+	getSocialInfo(accessToken: string): Promise<OauthInfo>;
 }
