@@ -1,19 +1,21 @@
 import { OauthInfo } from '@type';
 import { OauthService } from './oauth.interface';
 import { ConfigService } from '@nestjs/config';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import axios from 'axios';
+import { AxiosRequestConfig } from 'axios';
+import querystring from 'querystring';
 import {
 	GITHUB_ACCESS_TOKEN_URL,
 	GITHUB_USER_INFO_API_URL,
 	GITHUB_AUTHORIZATION_URL,
 	GITHUB_REDIRECT_PATH,
 	OauthType,
-} from 'src/constant/auth.constant';
-import { CLIENT_DOMAIN, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from 'src/constant/env.constant';
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
-import axios from 'axios';
-import { AxiosRequestConfig } from 'axios';
-import querystring from 'querystring';
-import { HttpExceptionMsg } from '@constant';
+	HttpExceptionMsg,
+	CLIENT_DOMAIN,
+	GITHUB_CLIENT_ID,
+	GITHUB_CLIENT_SECRET,
+} from '@constant';
 
 @Injectable()
 export class GitHubOauth implements OauthService {
