@@ -21,11 +21,11 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx}": [
-			"eslint --fix",
-			"prettier --config ./.prettierrc --write ./src/**/*.{js,jsx,ts,tsx}"
-		]
-	},
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --config ./.prettierrc --write ./src/**/*.{js,jsx,ts,tsx}"
+    ]
+  },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
@@ -33,6 +33,7 @@
     "@nestjs/mapped-types": "^1.2.2",
     "@nestjs/mongoose": "^9.2.2",
     "@nestjs/platform-express": "^9.0.0",
+    "axios": "^1.4.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "joi": "^17.9.2",
