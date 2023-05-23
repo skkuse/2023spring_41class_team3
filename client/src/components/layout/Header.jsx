@@ -7,10 +7,10 @@ const headerStyle = {
 };
 
 const headerLogoStyle = {
-	width: '100px',
-	height: '100px',
+	width: '80px',
+	height: '80px',
 	objectFit: 'contain',
-	padding: '0 10px',
+	padding: '0 5px',
 };
 
 const Header = () => (
