@@ -16,6 +16,12 @@ export class AuthService {
 		return this.oauthInstance.getSocialUrl();
 	}
 
+	async getOauthUserInfo(code: string, type: OauthType) {
+		this.setOauthInstanceByType(type);
+
+		return '';
+	}
+
 	setOauthInstanceByType(type: OauthType) {
 		switch (type) {
 			case OauthType.GITHUB:

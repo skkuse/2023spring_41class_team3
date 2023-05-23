@@ -7,4 +7,4 @@ export const AUTHORIZATION_TOKEN_TYPE = 'Bearer';
 
 // github
 export const GITHUB_AUTHORIZATION_URL = 'https://github.com/login/oauth/authorize';
-export const GITHUB_REDIRECT_PATH = '/login/oauth/callback?type=github';
+export const GITHUB_REDIRECT_PATH = '/api/auth/login/oauth/callback?type=github';
