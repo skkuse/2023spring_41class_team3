@@ -55,7 +55,7 @@ export class GitHubOauth implements OauthService {
 			if (!login || !node_id)
 				throw new UnauthorizedException(HttpExceptionMsg.AUTHENTICATION_FAILED);
 
-			return { userId: login, oauthId: node_id, oauth: OauthType.GITHUB };
+			return { userId: login, oauthId: node_id, oauthType: OauthType.GITHUB };
 		} catch (_) {
 			throw new UnauthorizedException(HttpExceptionMsg.AUTHENTICATION_FAILED);
 		}

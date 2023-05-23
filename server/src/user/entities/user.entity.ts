@@ -9,13 +9,13 @@ export class User {
 	oauthId: string;
 
 	@Prop({ required: true })
-	oauth: string;
+	userId: string;
+
+	@Prop({ required: true })
+	oauthType: string;
 
 	@Prop()
 	username?: string;
-
-	@Prop({ validate: /\S+@\S+\.\S+/, unique: true })
-	email?: string;
 
 	@Prop()
 	deletedAt?: Date;
