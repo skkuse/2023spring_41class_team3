@@ -4,12 +4,14 @@ import { OauthUrlDto } from 'src/user/dto/oauth-url.dto';
 import { OauthType } from 'src/constant/auth.constant';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { UserRepository } from '../repository/auth.repository';
 
 @Controller('auth')
 export class AuthController {
 	constructor(
 		private readonly authService: AuthService,
-		private readonly configService: ConfigService
+		private readonly configService: ConfigService,
+		private readonly userRepository: UserRepository
 	) {}
 
 	@Get('login/oauth')
@@ -29,6 +31,10 @@ export class AuthController {
 			return;
 		}
 		const userInfo = await this.authService.getOauthUserInfo(authorizationCode, type);
-		return userInfo;
+		let user = await this.userRepository.findUser(userInfo.oauthId);
+		if (!user) {
+			user = await this.userRepository.saveUser(userInfo);
+		}
+		return user;
 	}
 }
