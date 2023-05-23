@@ -19,8 +19,10 @@ export class AuthService {
 	async getOauthUserInfo(code: string, type: OauthType) {
 		this.setOauthInstanceByType(type);
 
-		const accessToken = await this.oauthInstance.getAccessTokenByAuthorizationCode(code);
-		return accessToken;
+		const accessToken = await this.oauthInstance.getAccessToken(code);
+		const userInfo = await this.oauthInstance.getSocialInfo(accessToken);
+
+		return userInfo;
 	}
 
 	setOauthInstanceByType(type: OauthType) {

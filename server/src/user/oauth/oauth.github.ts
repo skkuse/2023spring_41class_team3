@@ -3,8 +3,10 @@ import { OauthService } from './oauth.interface';
 import { ConfigService } from '@nestjs/config';
 import {
 	GITHUB_ACCESS_TOKEN_URL,
+	GITHUB_API_BASE_URL,
 	GITHUB_AUTHORIZATION_URL,
 	GITHUB_REDIRECT_PATH,
+	OauthType,
 } from 'src/constant/auth.constant';
 import { CLIENT_DOMAIN, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from 'src/constant/env.constant';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
@@ -26,19 +28,36 @@ export class GitHubOauth implements OauthService {
 		return GITHUB_AUTHORIZATION_URL + query;
 	}
 
-	async getAccessTokenByAuthorizationCode(authorizationCode: string): Promise<string> {
+	async getAccessToken(authorizationCode: string): Promise<string> {
 		const query = `?client_id=${this.clientId}&client_secret=${this.clientSecret}&code=${authorizationCode}&redirect_uri=${this.redirectUri}`;
 		const header: AxiosRequestConfig = { headers: { Accept: 'application/json' } };
 		try {
 			const res = await axios.post(GITHUB_ACCESS_TOKEN_URL + query, header);
 			const { access_token } = querystring.parse(res.data);
+			if (!access_token)
+				throw new UnauthorizedException(HttpExceptionMsg.INVALID_ACCESS_TOKEN);
+
 			return access_token as string;
-		} catch (err) {
+		} catch (_) {
 			throw new UnauthorizedException(HttpExceptionMsg.AUTHENTICATION_FAILED);
 		}
 	}
 
-	getSocialInfoByAccessToken(accessToken: string): Promise<OauthInfo> {
-		throw new Error('Method not implemented.');
+	async getSocialInfo(accessToken: string): Promise<OauthInfo> {
+		const tokenType = 'Bearer';
+		const header: AxiosRequestConfig = {
+			headers: { Authorization: `${tokenType} ${accessToken}` },
+		};
+
+		try {
+			const res = await axios.get(GITHUB_API_BASE_URL, header);
+			const { login, node_id } = res.data;
+			if (!login || !node_id)
+				throw new UnauthorizedException(HttpExceptionMsg.AUTHENTICATION_FAILED);
+
+			return { userId: login, oauthId: node_id, oauth: OauthType.GITHUB };
+		} catch (_) {
+			throw new UnauthorizedException(HttpExceptionMsg.AUTHENTICATION_FAILED);
+		}
 	}
 }
