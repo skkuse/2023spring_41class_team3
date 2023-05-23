@@ -3,7 +3,7 @@ import { OauthService } from './oauth.interface';
 import { ConfigService } from '@nestjs/config';
 import {
 	GITHUB_ACCESS_TOKEN_URL,
-	GITHUB_API_BASE_URL,
+	GITHUB_USER_INFO_API_URL,
 	GITHUB_AUTHORIZATION_URL,
 	GITHUB_REDIRECT_PATH,
 	OauthType,
@@ -50,7 +50,7 @@ export class GitHubOauth implements OauthService {
 		};
 
 		try {
-			const res = await axios.get(GITHUB_API_BASE_URL, header);
+			const res = await axios.get(GITHUB_USER_INFO_API_URL, header);
 			const { login, node_id } = res.data;
 			if (!login || !node_id)
 				throw new UnauthorizedException(HttpExceptionMsg.AUTHENTICATION_FAILED);
