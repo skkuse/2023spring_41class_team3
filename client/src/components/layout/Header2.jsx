@@ -4,19 +4,20 @@ const headerStyle = {
 	display: 'flex',
 	textAlign: 'center',
 	padding: '0 auto',
+	background: '#FFFFFF',
 };
 
 const headerLogoStyle = {
-	width: '110px',
-	height: '110px',
+	width: '80px',
+	height: '80px',
 	objectFit: 'contain',
 	padding: '0 5px',
 };
 
-const Header = () => (
+const Header2 = () => (
 	<header style={headerStyle}>
 		<img src={devNaviLogo} alt="devNavi logo" style={headerLogoStyle} />
 	</header>
 );
 
-export default Header;
+export default Header2;

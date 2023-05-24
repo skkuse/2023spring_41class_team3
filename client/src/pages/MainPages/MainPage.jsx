@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.main`
-	margin: 0 10%;
+	margin: 0 20%;
 	display: flex;
 	flex-direction: column;
 `;

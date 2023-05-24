@@ -32,6 +32,7 @@ function IntroContainerFirst() {
 			<Title>{TITLE}</Title>
 			<Description>
 				{DESCRIPTION1}
+				<br />
 				{DESCRIPTION2}
 			</Description>
 		</IntroWrapper>
