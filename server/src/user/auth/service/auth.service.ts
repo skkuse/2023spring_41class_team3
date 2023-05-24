@@ -43,11 +43,12 @@ export class AuthService {
 	}
 
 	createAccessToken(payload: JwtPayload): string {
+		const { oauthId, oauthType } = payload;
 		const jwtOptions: JwtSignOptions = {
 			secret: this.configService.get<string>(JWT_ACCESS_SECRET),
 			expiresIn: ACCESS_TOKEN_LIMIE_TIME,
 		};
 
-		return this.jwtService.sign({ ...payload }, jwtOptions);
+		return this.jwtService.sign({ oauthId, oauthType }, jwtOptions);
 	}
 }
