@@ -19,5 +19,6 @@ export const envConfig: ConfigModuleOptions = {
 		GITHUB_CLIENT_SECRET: Joi.string().required(),
 		CLIENT_DOMAIN: Joi.string().required(),
 		SERVER_DOMAIN: Joi.string().required(),
+		JWT_ACCESS_SECRET: Joi.string().required(),
 	}),
 };
