@@ -1,10 +1,12 @@
 import { Controller, Get, Query, Res } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
 import { OauthUrlDto } from 'src/user/dto/oauth-url.dto';
-import { OauthType } from 'src/constant/auth.constant';
+import { OauthType, jwtCookieOptions } from 'src/constant/auth.constant';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { UserRepository } from '../repository/auth.repository';
+import { JwtPayload } from '@type';
+import { CLIENT_DOMAIN } from '@constant';
 
 @Controller('auth')
 export class AuthController {
@@ -35,6 +37,8 @@ export class AuthController {
 		if (!user) {
 			user = await this.userRepository.saveUser(userInfo);
 		}
-		return user;
+		const accessToken = this.authService.createAccessToken(user as JwtPayload);
+		res.cookie('accessToken', accessToken, jwtCookieOptions);
+		res.redirect(this.configService.get<string>(CLIENT_DOMAIN));
 	}
 }
