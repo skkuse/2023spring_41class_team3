@@ -3,6 +3,7 @@
        "paths": {
         "@constant": ["src/constant/index"],
         "@config": ["src/config/index"],
+        "@type": ["src/types/index"],
       }
     }
 }

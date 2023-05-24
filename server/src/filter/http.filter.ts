@@ -12,7 +12,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 		const status = exception.getStatus();
 
 		const timestamp = new Date().toISOString();
-		this.logger.error(`${req.method} ${req.url}\n${exception.stack}`);
+		this.logger.error(`${status} ${req.method} ${req.url}\n${exception.stack}`);
 
 		res.status(status).json({
 			timestamp,

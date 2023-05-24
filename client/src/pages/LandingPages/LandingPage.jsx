@@ -27,13 +27,13 @@ const Content = styled.main`
 	flex-direction: column;
 `;
 
-function LandingPage({ user, handleLogout }) {
+function LandingPage() {
 	return (
 		<Wrapper>
 			<Header />
 			<Content>
 				<IntroContainerFirst />
-				<LoginContainer user={user} handleLogout={handleLogout} />
+				<LoginContainer />
 				<IntroContainerSecond />
 				<LogosContainer />
 			</Content>
