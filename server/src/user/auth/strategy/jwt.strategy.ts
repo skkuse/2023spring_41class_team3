@@ -26,9 +26,7 @@ export class JwtAccessTokenStrategy extends PassportStrategy(Strategy, ACCESS_ST
 		});
 	}
 
-	async validate(req: Request, payload: JwtPayload) {
-		const accessToken = this.authService.createAccessToken(payload);
-		req.cookies.accessToken = accessToken;
-		return payload;
+	async validate(_: Request, payload: JwtPayload) {
+		return payload; // req.user에 저장
 	}
 }
