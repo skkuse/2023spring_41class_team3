@@ -1,4 +1,4 @@
-import { ACCESS_STRATEGY_KEY, JWT_ACCESS_TOKEN_SECRET } from '@constant';
+import { ACCESS_STRATEGY_KEY, JWT_ACCESS_SECRET } from '@constant';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtPayload } from '@type';
 
 @Injectable()
-export class JwtAccessTokenSStrategy extends PassportStrategy(Strategy, ACCESS_STRATEGY_KEY) {
+export class JwtAccessTokenStrategy extends PassportStrategy(Strategy, ACCESS_STRATEGY_KEY) {
 	constructor(
 		private readonly authService: AuthService,
 		private readonly configService: ConfigService
@@ -21,7 +21,7 @@ export class JwtAccessTokenSStrategy extends PassportStrategy(Strategy, ACCESS_S
 					return token ?? null;
 				},
 			]),
-			secretOrKey: configService.get(JWT_ACCESS_TOKEN_SECRET),
+			secretOrKey: configService.get(JWT_ACCESS_SECRET),
 			passReqToCallback: true,
 		});
 	}

@@ -1,4 +1,4 @@
-import { HttpExceptionMsg, JWT_ACCESS_TOKEN_SECRET } from '@constant';
+import { HttpExceptionMsg, JWT_ACCESS_SECRET } from '@constant';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
@@ -44,7 +44,7 @@ export class AuthService {
 
 	createAccessToken(payload: JwtPayload): string {
 		const jwtOptions: JwtSignOptions = {
-			secret: this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET),
+			secret: this.configService.get<string>(JWT_ACCESS_SECRET),
 			expiresIn: ACCESS_TOKEN_LIMIE_TIME,
 		};
 
