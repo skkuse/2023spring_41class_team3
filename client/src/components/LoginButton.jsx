@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import githubLogo from 'assets/images/logos/github-mark-white.png';
-import useOauthLogin from 'hooks/auth';
+import { useOauthLogin } from 'hooks/auth';
 
 const LOGIN_MSG = 'Log in with GitHub';
 

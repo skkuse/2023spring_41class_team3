@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const useOauthLogin = () => {
+export const useOauthLogin = () => {
 	const navigate = useNavigate();
 
 	const oauthLogin = async (oauthType) => {
@@ -20,4 +20,20 @@ const useOauthLogin = () => {
 	return oauthLogin;
 };
 
-export default useOauthLogin;
+export const useAuthenticate = () => {
+	const navigate = useNavigate();
+
+	const authenticate = async () => {
+		try {
+			await axios.get('/api/auth/authentication');
+			navigate('/main');
+		} catch (err) {
+			const { status } = err.response;
+			if (status === 401) {
+				navigate('/');
+			}
+		}
+	};
+
+	return authenticate;
+};
