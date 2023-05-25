@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Editor from '@monaco-editor/react';
 
 const Wrapper = styled.div`
 	background-color: #c0d0dc;
@@ -10,7 +11,7 @@ const Wrapper = styled.div`
 function CodeEditBox() {
 	return (
 		<Wrapper>
-			<input type="text" />
+			<Editor width="100%" height="100%" />
 		</Wrapper>
 	);
 }
