@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Login from 'components/LoginModal';
 import LandingPage from 'pages/LandingPages/LandingPage';
+import ResultPage from 'pages/ResultPages/ResultPage';
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ function App() {
 					path="/main"
 					element={<LandingPage user={user} handleLogout={handleLogout} />}
 				/>
+				<Route path="/result" element={<ResultPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
