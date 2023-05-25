@@ -15,6 +15,13 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'react/prop-types': 'off',
 		'react/function-component-definition': [2, { namedComponents: ['function-declaration'] }],
+		'react/destructuring-assignment': [0, 'always'],
+		'import/no-extraneous-dependencies': [
+			'error',
+			{ devDependencies: false, optionalDependencies: false, peerDependencies: false },
+		],
+		'default-param-last': 0,
+		'func-names': ['error', 'never'],
 	},
 	settings: {
 		'import/resolver': {
