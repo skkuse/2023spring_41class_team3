@@ -3,7 +3,9 @@
     "git-cz": "^4.9.0",
     "husky": "^8.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@material-ui/icons": "^4.11.3"
+  },
   "scripts": {
     "prepare": "husky install"
   },
