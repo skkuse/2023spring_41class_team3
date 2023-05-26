@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type ProblemMetadataDocument = HydratedDocument<ProblemMetadataEntity>;
+export type ProblemDocument = HydratedDocument<ProblemEntity>;
 
-@Schema({ timestamps: true })
-export class ProblemMetadataEntity {
+@Schema()
+export class ProblemEntity {
 	@Prop({ required: true, unique: true })
 	problemId: string;
 
@@ -16,6 +16,12 @@ export class ProblemMetadataEntity {
 
 	@Prop({ required: true })
 	tags: string[];
+
+	@Prop({ required: true })
+	description: string;
+
+	@Prop({ required: true })
+	constraint: string[];
 }
 
-export const ProblemMetadataSchema = SchemaFactory.createForClass(ProblemMetadataEntity);
+export const ProblemSchema = SchemaFactory.createForClass(ProblemEntity);

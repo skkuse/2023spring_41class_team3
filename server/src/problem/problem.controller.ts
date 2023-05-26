@@ -13,7 +13,7 @@ export class ProblemController {
 
 	@Post('new')
 	create(@Body() createProblemDto: CreateProblemDto) {
-		return this.problemRepository.createProblemMetadata(createProblemDto);
+		return this.problemRepository.createProblem(createProblemDto);
 	}
 
 	@Get()
