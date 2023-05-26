@@ -2,14 +2,18 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProblemService } from './problem.service';
 import { CreateProblemDto } from './dto/create-problem.dto';
 import { UpdateProblemDto } from './dto/update-problem.dto';
+import { ProblemRepository } from './repository/problem.repository';
 
 @Controller('problem')
 export class ProblemController {
-	constructor(private readonly problemService: ProblemService) {}
+	constructor(
+		private readonly problemService: ProblemService,
+		private readonly problemRepository: ProblemRepository
+	) {}
 
-	@Post()
+	@Post('new')
 	create(@Body() createProblemDto: CreateProblemDto) {
-		return this.problemService.create(createProblemDto);
+		return this.problemRepository.createProblemMetadata(createProblemDto);
 	}
 
 	@Get()
