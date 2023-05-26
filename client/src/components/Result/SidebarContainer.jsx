@@ -18,34 +18,18 @@ function SidebarContainer() {
 		};
 	}
 
+	const problemList = [1, 2, 3, 4, 5];
+
 	return (
 		<Sidebar style={siderbarStyle}>
 			<Menu>
-				<SubMenu label="Problem 1">
-					<MenuItem onClick={setResult(1, 'readability')}> 가독성 </MenuItem>
-					<MenuItem onClick={setResult(1, 'timeComplexity')}> 시간 복잡도 </MenuItem>
-					<MenuItem onClick={setResult(1, 'improvement')}> 개선된 코드 </MenuItem>
-				</SubMenu>
-				<SubMenu label="Problem 2">
-					<MenuItem onClick={setResult(2, 'readability')}> 가독성 </MenuItem>
-					<MenuItem onClick={setResult(2, 'timeComplexity')}> 시간 복잡도 </MenuItem>
-					<MenuItem onClick={setResult(2, 'improvement')}> 개선된 코드 </MenuItem>
-				</SubMenu>
-				<SubMenu label="Problem 3">
-					<MenuItem onClick={setResult(3, 'readability')}> 가독성 </MenuItem>
-					<MenuItem onClick={setResult(3, 'timeComplexity')}> 시간 복잡도 </MenuItem>
-					<MenuItem onClick={setResult(3, 'improvement')}> 개선된 코드 </MenuItem>
-				</SubMenu>
-				<SubMenu label="Problem 4">
-					<MenuItem onClick={setResult(4, 'readability')}> 가독성 </MenuItem>
-					<MenuItem onClick={setResult(4, 'timeComplexity')}> 시간 복잡도 </MenuItem>
-					<MenuItem onClick={setResult(4, 'improvement')}> 개선된 코드 </MenuItem>
-				</SubMenu>
-				<SubMenu label="Problem 5">
-					<MenuItem onClick={setResult(5, 'readability')}> 가독성 </MenuItem>
-					<MenuItem onClick={setResult(5, 'timeComplexity')}> 시간 복잡도 </MenuItem>
-					<MenuItem onClick={setResult(5, 'improvement')}> 개선된 코드 </MenuItem>
-				</SubMenu>
+				{problemList.map((num) => (
+					<SubMenu label={`Problem ${num}`}>
+						<MenuItem onClick={setResult(num, 'readability')}> 가독성 </MenuItem>
+						<MenuItem onClick={setResult(num, 'timeComplexity')}>시간 복잡도</MenuItem>
+						<MenuItem onClick={setResult(num, 'improvement')}> 개선된 코드 </MenuItem>
+					</SubMenu>
+				))}
 				<MenuItem onClick={setResult(0, 'analysis')}> 분석 </MenuItem>
 				<MenuItem onClick={setResult(0, 'feedback')}> 피드백 </MenuItem>
 			</Menu>
