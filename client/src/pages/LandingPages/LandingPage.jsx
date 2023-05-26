@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import Header from 'components/layout/Header';
@@ -10,6 +10,7 @@ import IntroContainerFirst from 'components/Landing/IntroContainerFirst';
 import IntroContainerSecond from 'components/Landing/IntroContainerSecond';
 import LogosContainer from 'components/Landing/LogosContainer';
 import LoginContainer from 'components/Landing/LoginContainer';
+import { useAuthenticate } from 'hooks/auth';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -27,13 +28,19 @@ const Content = styled.main`
 	flex-direction: column;
 `;
 
-function LandingPage({ user, handleLogout }) {
+function LandingPage() {
+	const authenticate = useAuthenticate();
+
+	useEffect(() => {
+		authenticate();
+	}, []);
+
 	return (
 		<Wrapper>
 			<Header />
 			<Content>
 				<IntroContainerFirst />
-				<LoginContainer user={user} handleLogout={handleLogout} />
+				<LoginContainer />
 				<IntroContainerSecond />
 				<LogosContainer />
 			</Content>
