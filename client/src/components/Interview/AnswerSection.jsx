@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import userImg from 'assets/images/user.png';
-import TextForm from './TextForm';
+import AnswerTextField from './AnswerTextField';
 
 const userImgStyle = {
 	width: '41px',
@@ -12,7 +12,7 @@ function AnswerSection() {
 	return (
 		<Wrapper>
 			<img style={userImgStyle} src={`${userImg}`} alt="user-icon" />
-			<TextForm />
+			<AnswerTextField />
 		</Wrapper>
 	);
 }
@@ -25,6 +25,6 @@ const Wrapper = styled.div`
 	border-radius: 10px;
 	width: 100%;
 	height: 35vh;
-	margin-top: 5%;
+	margin-top: 3%;
 	padding: 10px;
 `;

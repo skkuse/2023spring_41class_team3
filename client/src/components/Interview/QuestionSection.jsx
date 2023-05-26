@@ -1,11 +1,13 @@
 import OpenAISvg from 'assets/images/logos/OpenAI-svg';
 import React from 'react';
 import styled from 'styled-components';
+import QuestionBox from './QuestionBox';
 
 function QuestionSection() {
 	return (
 		<Wrapper>
 			<OpenAISvg />
+			<QuestionBox />
 		</Wrapper>
 	);
 }

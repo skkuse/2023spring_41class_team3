@@ -6,6 +6,8 @@ import Header from 'components/common/Header';
 import SidebarInterview from 'components/Interview/SidebarInterview';
 import QuestionSection from 'components/Interview/QuestionSection';
 import AnswerSection from 'components/Interview/AnswerSection';
+import SubmitButton from 'components/Interview/SubmitButotn';
+import InterviewTimer from 'components/Interview/InterviewTimer';
 
 function InterviewPage() {
 	return (
@@ -17,6 +19,10 @@ function InterviewPage() {
 					<QuestionSection />
 					<AnswerSection />
 				</SectionWrapper>
+				<TimeButtonWrapper>
+					<SubmitButton />
+					<InterviewTimer />
+				</TimeButtonWrapper>
 			</Content>
 		</Wrapper>
 	);
@@ -35,12 +41,20 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.main`
-	margin: 0 2%;
+	margin: 2% 2% 0 2%;
 	height: 80vh;
 	display: flex;
 `;
 
 const SectionWrapper = styled.div`
-	width: 80vw;
+	width: 65vw;
 	margin: 0 2%;
+`;
+
+const TimeButtonWrapper = styled.div`
+	width: 6vw;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-start;
+	margin: 0 0 0.5% 2%;
 `;

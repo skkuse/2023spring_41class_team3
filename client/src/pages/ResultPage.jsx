@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.main`
-	margin: 0 2%;
+	margin: 2% 2% 0 2%;
 	height: 80vh;
 	display: flex;
 `;
