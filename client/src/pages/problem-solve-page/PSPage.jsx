@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import bgImage from '../../assets/images/background/landing-background.jpg';
 
 import Header from '../../components/layout/Header';
-import ContentBox from '../../components/PS/ContentBox';
+import ContentBox from '../../components/problem-solve/ContentBox';
 
 const Wrapper = styled.div`
 	width: 100%;

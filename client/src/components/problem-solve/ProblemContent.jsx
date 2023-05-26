@@ -9,8 +9,8 @@ const Wrapper = styled.div`
 	background-size: cover;
 	text-align: left;
 	width: 100%;
-	hieght: calc(100% - 140px);
-	overflow: hidden;
+	hieght: 100%;
+	overflow: auto;
 	background-size: cover;
 `;
 

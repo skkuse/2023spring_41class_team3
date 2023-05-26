@@ -12,6 +12,10 @@ const ButtonWrapper = styled.button`
 	font-size: 16px;
 	font-weight: bold;
 	border-radius: 20px;
+
+	&:hover {
+		background-color: #ecf0f2;
+	}
 `;
 
 function SubmitButton() {

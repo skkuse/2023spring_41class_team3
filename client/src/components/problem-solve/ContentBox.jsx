@@ -8,7 +8,7 @@ import CodingBox from './CodingBox';
 const Wrapper = styled.div`
 	width: 100%;
 	display: flex;
-	height: calc(100vh - 100px);
+	height: calc(100% - 110px);
 `;
 
 function ContentBox() {

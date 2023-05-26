@@ -7,9 +7,13 @@ const ButtonWrapper = styled.button`
 	background-color: white;
 	color: black;
 	box-shadow: 0 4px 16px rgba(0, 79, 255, 0.3);
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: bold;
 	border-radius: 30px;
+
+	&:hover {
+		background-color: #ecf0f2;
+	}
 `;
 
 function ProblemNumButton() {
