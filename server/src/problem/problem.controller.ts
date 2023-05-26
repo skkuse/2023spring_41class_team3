@@ -23,7 +23,7 @@ export class ProblemController {
 
 	@Get(':id')
 	findOne(@Param('id') id: string) {
-		return this.problemService.findOne(+id);
+		return this.problemRepository.findOneMeta(+id);
 	}
 
 	@Patch(':id')

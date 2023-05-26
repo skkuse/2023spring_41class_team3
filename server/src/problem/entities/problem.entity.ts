@@ -6,7 +6,7 @@ export type ProblemDocument = HydratedDocument<ProblemEntity>;
 @Schema()
 export class ProblemEntity {
 	@Prop({ required: true, unique: true })
-	problemId: string;
+	problemN: number;
 
 	@Prop({ required: true })
 	title: string;

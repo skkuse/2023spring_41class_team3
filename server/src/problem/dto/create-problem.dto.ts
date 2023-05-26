@@ -1,5 +1,5 @@
 export class CreateProblemDto {
-	problemId: string;
+	problemN: number;
 	title: string;
 	difficulty: number;
 	tags: string[];

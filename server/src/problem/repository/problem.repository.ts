@@ -17,4 +17,18 @@ export class ProblemRepository {
 			throw new Error(error);
 		}
 	}
+
+	async findOneMeta(id: number) {
+		try {
+			const problem = await this.problemModel.findOne({ problemN: id }).exec();
+			return {
+				problemN: problem.problemN,
+				title: problem.title,
+				difficulty: problem.difficulty,
+				tags: problem.tags,
+			};
+		} catch (error) {
+			throw new Error(error);
+		}
+	}
 }

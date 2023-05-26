@@ -1,5 +1,5 @@
 export interface Problem {
-	problemId: string;
+	problemN: number;
 	title: string;
 	difficulty: number;
 	tags: string[];
@@ -7,15 +7,15 @@ export interface Problem {
 	constraint: string[];
 }
 
-export interface ProblemMetadata {
-	problemId: string;
+export interface MetaProblem {
+	problemN: string;
 	title: string;
 	difficulty: number;
 	tags: string[];
 }
 
 export interface ProblemDescription {
-	problemId: string;
+	problemN: string;
 	description: string;
 	constraint: string[];
 }
