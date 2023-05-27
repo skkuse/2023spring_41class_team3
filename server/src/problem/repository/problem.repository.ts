@@ -18,7 +18,7 @@ export class ProblemRepository {
 		}
 	}
 
-	async findOneMeta(id: number) {
+	async findOne(id: number) {
 		try {
 			const problem = await this.problemModel.findOne({ problemN: id }).exec();
 			return {
