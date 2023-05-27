@@ -31,6 +31,7 @@ const TopMessage = styled.div`
 	line-height: 20px;
 	font-size: 20px;
 `;
+
 const Wrapper = styled.div`
 	background-color: #ecf1f4;
 	border: 2px solid #b6c9d7;
