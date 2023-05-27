@@ -13,7 +13,7 @@ function SidebarInterview() {
 	const problemList = [1, 2, 3, 4, 5];
 
 	return (
-		<Sidebar style={siderbarStyle}>
+		<Sidebar style={siderbarStyle} width="200px">
 			<Menu>
 				{problemList.map((num) => (
 					<MenuItem>{`Problem ${num}`}</MenuItem>
