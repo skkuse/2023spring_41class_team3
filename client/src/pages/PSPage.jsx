@@ -26,12 +26,14 @@ const Wrapper = styled.div`
 	background-position: center;
 `;
 
+// 헤더를 제외한 페이지 구성 컴포넌트들을 포함하는 박스
 const ContentBox = styled.div`
 	width: 100%;
 	display: flex;
 	height: calc(100% - 110px);
 `;
 
+// 문제 제목과 문제 내용을 담는 박스
 const ProblemBox = styled.div`
 	align-content: left;
 	display: block;
@@ -40,6 +42,7 @@ const ProblemBox = styled.div`
 	background-color: white;
 `;
 
+// 문제 제목
 const ProblemTitle = styled.div`
 	display: inline-block;
 	color: black;
@@ -51,6 +54,7 @@ const ProblemTitle = styled.div`
 	font-size: 20px;
 `;
 
+// 문제 내용
 const ProblemContent = styled.div`
 	display: inline-block;
 	background-size: cover;
@@ -60,6 +64,7 @@ const ProblemContent = styled.div`
 	background-size: cover;
 `;
 
+// 에디터, 테스트 결과 출력 박스, 관련 버튼들을 구성하는 박스
 const CodingBox = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -68,6 +73,7 @@ const CodingBox = styled.div`
 	width: 60%;
 `;
 
+// 언어 선택, 코드 리셋, 테스트 실행, 제출 버튼을 포함하는 박스
 const ButtonBox = styled.div`
 	flex-wrap: nowrap;
 	height: 5%;
@@ -75,6 +81,7 @@ const ButtonBox = styled.div`
 	justify-content: space-between;
 `;
 
+// 코딩 언어를 선택할 수 있는 버튼
 const LanguageSelectionButton = styled.button`
 	width: 120px;
 	height: 40px;
@@ -91,15 +98,13 @@ const LanguageSelectionButton = styled.button`
 	}
 `;
 
+// 선택할 수 있는 언어들을 담는 박스 (C, C++, Python)
 const LanguageBox = styled.div`
 	display: flex;
 	flex-direction: column;
 `;
 
 function ProblemSolvingPage() {
-	const [visible, setVisible] = useState(false);
-	const [selectedProblem, setSelectedProblem] = useState(0);
-
 	const ProblemDescription = [
 		// 첫 번째 문제
 		{
@@ -187,10 +192,49 @@ function ProblemSolvingPage() {
 		},
 	];
 
+	const CodeLanguage = [
+		{
+			languagename: 'python',
+			defaultcode: 'def solution() {\n\tanswer = 0\n\treturn answer\n}',
+		},
+
+		{
+			languagename: 'c',
+			defaultcode:
+				'#include <stdio.h>\n#include <stdbool.h>\n#include <stdlib.h>\n\nlong long* solution(int n, int z, int** roads, size_t roads_rows, size_t roads_cols, long long queries[], size_t queries_len) {\n\tlong long* answer = (long long*)malloc(1);\n\treturn answer;\n}',
+		},
+
+		{
+			languagename: 'cpp',
+			defaultcode:
+				'#include <string>\n#include <vector>\n\nusing namespace std;\n\nvector<long long> solution(int n, int z, vector<vector<int>> roads, vector<long long> queries) {\n\tvector<long long> answer;\n\treturn answer;\n}',
+		},
+	];
+
+	const [visible, setVisible] = useState(false);
+	const [selectedProblem, setSelectedProblem] = useState(0);
+	const [selectedLanguage, setSelectedLanguage] = useState('python');
+	const [defaultCode, setDefaultCode] = useState(
+		CodeLanguage.find((lang) => lang.languagename === selectedLanguage).defaultcode
+	);
+
 	const { id, description } = ProblemDescription[selectedProblem];
+
+	const getDefaultCode = (languageName) => {
+		const language = CodeLanguage.find((lang) => lang.languagename === languageName);
+		if (language) {
+			return language.defaultcode;
+		}
+		return null; // 또는 원하는 에러 처리를 수행할 수 있습니다.
+	};
 
 	const handleProblemSelect = useCallback((index) => {
 		setSelectedProblem(index);
+	}, []);
+
+	const handleLanguageSelect = useCallback((language) => {
+		setSelectedLanguage(language);
+		setDefaultCode(getDefaultCode(language));
 	}, []);
 
 	return (
@@ -208,11 +252,11 @@ function ProblemSolvingPage() {
 				</ProblemBox>
 
 				<CodingBox>
-					<CodeEditBox />
+					<CodeEditBox defaultValue={defaultCode} />
 					<TestResult />
 					<ButtonBox>
 						<LanguageBox>
-							{visible && <LangButton />}
+							{visible && <LangButton onSelectLanguage={handleLanguageSelect} />}
 							<LanguageSelectionButton
 								onClick={() => {
 									setVisible(!visible);
