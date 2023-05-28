@@ -12,6 +12,9 @@ const ButtonWrapper = styled.button`
 	font-size: 16px;
 	font-weight: bold;
 	border-radius: 20px;
+	position: absolute;
+	bottom: 30px;
+	right: 170px;
 
 	&:hover {
 		background-color: #ecf0f2;

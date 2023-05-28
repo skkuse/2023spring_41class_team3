@@ -1,5 +1,5 @@
 import './App.css';
-import ProblemSolvingPage from './pages/problem-solve-page/PSPage';
+import ProblemSolvingPage from './pages/PSPage';
 
 function App() {
 	return (
