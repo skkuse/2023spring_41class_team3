@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { setProblemNo, setResultType } from 'actions/setResults';
 
 const siderbarStyle = {
 	border: '2px solid #b6c9d7',

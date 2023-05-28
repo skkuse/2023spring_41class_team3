@@ -9,23 +9,20 @@ import ResultFeedback from './ResultFeedback';
 function ResultContent() {
 	const { resultType } = useSelector((state) => state.resultType);
 
-	if (resultType === 'readability') {
-		return <ResultReadability />;
+	switch (resultType) {
+		case 'readability':
+			return <ResultReadability />;
+		case 'timeComplexity':
+			return <ResultTimeComplex />;
+		case 'improvement':
+			return <ResultImproved />;
+		case 'analysis':
+			return <ResultAnalysis />;
+		case 'feedback':
+			return <ResultFeedback />;
+		default:
+			return <ResultReadability />;
 	}
-	if (resultType === 'timeComplexity') {
-		return <ResultTimeComplex />;
-	}
-	if (resultType === 'improvement') {
-		return <ResultImproved />;
-	}
-	if (resultType === 'analysis') {
-		return <ResultAnalysis />;
-	}
-	if (resultType === 'feedback') {
-		return <ResultFeedback />;
-	}
-
-	return <div> 나머지 </div>;
 }
 
 export default ResultContent;
