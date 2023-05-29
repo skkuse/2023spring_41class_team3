@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { CreateProblemDto } from './dto/create-problem.dto';
 import { ProblemRepository } from './repository/problem.repository';
 
@@ -6,12 +6,16 @@ import { ProblemRepository } from './repository/problem.repository';
 export class ProblemController {
 	constructor(private readonly problemRepository: ProblemRepository) {}
 
-	@Post('new')
+	@Post('')
 	create(@Body() createProblemDto: CreateProblemDto) {
 		return this.problemRepository.createProblem(createProblemDto);
 	}
 
-	@Get(':difficulty&num')
+	@Get('')
+	getCodeSet(@Query('difficulty') difficulty: string, @Query('num') num: string) {
+		return this.problemRepository.getCodetestSet(+difficulty, +num);
+	}
+
 	@Get(':id')
 	findOne(@Param('id') id: string) {
 		return this.problemRepository.findOne(id);
