@@ -3,9 +3,6 @@
     "git-cz": "^4.9.0",
     "husky": "^8.0.0"
   },
-  "dependencies": {
-    "react-scripts": "^5.0.1"
-  },
   "scripts": {
     "prepare": "husky install"
   },
