@@ -2,60 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ handleLoginSuccess }) => {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	const navigate = useNavigate();
-
-	const handleUsernameChange = (event) => {
-		setUsername(event.target.value);
-	};
-
-	const handlePasswordChange = (event) => {
-		setPassword(event.target.value);
-	};
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-
-		// Perform authentication logic here
-		const userInfo = {
-			username,
-			password,
-			firstName: 'John',
-			lastName: 'Doe',
-		};
-
-		handleLoginSuccess(userInfo);
-		navigate('/main');
-	};
-
-	return (
-		<LoginContainer>
-			<LoginForm onSubmit={handleSubmit}>
-				<LoginTitle>Log In</LoginTitle>
-				<Input
-					type="text"
-					name="username"
-					placeholder="Username"
-					value={username}
-					onChange={handleUsernameChange}
-				/>
-				<Input
-					type="password"
-					name="password"
-					placeholder="Password"
-					value={password}
-					onChange={handlePasswordChange}
-				/>
-				<Button type="submit">Log In</Button>
-			</LoginForm>
-		</LoginContainer>
-	);
-};
-
-export default Login;
-
 const LoginContainer = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -110,3 +56,57 @@ const Button = styled.button`
 		background-color: #3e8e41;
 	}
 `;
+
+function Login({ handleLoginSuccess }) {
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const navigate = useNavigate();
+
+	const handleUsernameChange = (event) => {
+		setUsername(event.target.value);
+	};
+
+	const handlePasswordChange = (event) => {
+		setPassword(event.target.value);
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		// Perform authentication logic here
+		const userInfo = {
+			username,
+			password,
+			firstName: 'John',
+			lastName: 'Doe',
+		};
+
+		handleLoginSuccess(userInfo);
+		navigate('/main');
+	};
+
+	return (
+		<LoginContainer>
+			<LoginForm onSubmit={handleSubmit}>
+				<LoginTitle>Log In</LoginTitle>
+				<Input
+					type="text"
+					name="username"
+					placeholder="Username"
+					value={username}
+					onChange={handleUsernameChange}
+				/>
+				<Input
+					type="password"
+					name="password"
+					placeholder="Password"
+					value={password}
+					onChange={handlePasswordChange}
+				/>
+				<Button type="submit">Log In</Button>
+			</LoginForm>
+		</LoginContainer>
+	);
+}
+
+export default Login;

@@ -7,6 +7,8 @@ const logoStyle = {
 	margin: '0 10px',
 };
 
-const Logo = ({ src }) => <img src={src} alt="logo" style={logoStyle} />;
+function Logo({ src }) {
+	return <img src={src} alt="logo" style={logoStyle} />;
+}
 
 export default Logo;

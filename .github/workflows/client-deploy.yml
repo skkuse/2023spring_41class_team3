@@ -1,0 +1,57 @@
+name: client-deploy
+
+on:
+  push:
+    branches: [25-cicd-및-배포]
+    paths:
+      - "client/**"
+
+jobs:
+  client-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: node package cache
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: If node package cache hit, skip yarn install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: front CI
+        run: yarn lint
+
+      - name: front build
+        run: yarn build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Zip build directory and appspec.yml
+        run: |
+          zip -r client.zip ./build ./appspec.yml
+
+      - name: Upload client.zip to S3
+        run: |
+          aws s3 cp client.zip s3://devnavi-deploy-bucket/client.zip
+
+      - name: Deploy to EC2 using CodeDeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name devnavi-deploy-app \
+            --deployment-group-name devnavi-deploy-client-group \
+            --s3-location bucket=devnavi-deploy-bucket,bundleType=zip,key=client.zip

@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import LoginButton from 'components/LoginButton';
-import LogoutButton from 'components/LogoutButton';
 
 const LoginWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 `;
 
-function LoginContainer({ user, handleLogout }) {
+function LoginContainer() {
 	return (
 		<LoginWrapper>
-			{user ? <LogoutButton handleLogout={handleLogout} /> : <LoginButton />}
+			<LoginButton />
 		</LoginWrapper>
 	);
 }

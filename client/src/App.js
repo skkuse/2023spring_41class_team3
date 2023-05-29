@@ -1,34 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Login from 'components/LoginModal';
 import LandingPage from 'pages/LandingPages/LandingPage';
 import MainPage from 'pages/MainPages/MainPage';
+import ResultPage from 'pages/ResultPages/ResultPage';
 
-const App = () => {
-	const [user, setUser] = useState(null);
-
-	const handleLoginSuccess = (userInfo) => {
-		setUser(userInfo);
-	};
-
-	const handleLogout = () => {
-		setUser(null);
-	};
-
+function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route
-					exact
-					path="/"
-					element={<LandingPage user={user} handleLogout={handleLogout} />}
-				/>
-				<Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
+				<Route exact path="/" element={<LandingPage />} />
 				<Route path="/main" element={<MainPage />} />
+				<Route exact path="/result" element={<ResultPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
-};
+}
 
 export default App;

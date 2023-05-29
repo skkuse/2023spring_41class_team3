@@ -15,5 +15,11 @@ export const envConfig: ConfigModuleOptions = {
 		MONGO_SERVER_PORT: Joi.string().required(),
 		ME_CONFIG_MONGODB_ADMINUSERNAME: Joi.string().required(),
 		ME_CONFIG_MONGODB_ADMINPASSWORD: Joi.string().required(),
+		OAUTH_GITHUB_CLIENT_ID: Joi.string().required(),
+		OAUTH_GITHUB_CLIENT_SECRET: Joi.string().required(),
+		CLIENT_DOMAIN: Joi.string().required(),
+		JWT_ACCESS_SECRET: Joi.string().required(),
+		ME_CONFIG_BASICAUTH_USERNAME: Joi.string().required(),
+		ME_CONFIG_BASICAUTH_PASSWORD: Joi.string().required(),
 	}),
 };

@@ -10,16 +10,14 @@ const logos = [
 	openAILogo,
 ];
 
-const logoListStyle = {
-	display: 'flex',
-};
-
-const LogoList = () => (
-	<div>
-		{logos.map((logo) => (
-			<Logo style={logoListStyle} src={logo} />
-		))}
-	</div>
-);
+function LogoList() {
+	return (
+		<div>
+			{logos.map((logo) => (
+				<Logo style={{ display: 'flex' }} src={logo} />
+			))}
+		</div>
+	);
+}
 
 export default LogoList;
