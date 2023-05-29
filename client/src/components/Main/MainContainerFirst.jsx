@@ -46,14 +46,17 @@ const ButtonContainer = styled.div`
 	width: 100%;
 	min-height: 45vh;
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 
 const CTModeButton = styled.button`
-	width: 40%;
-	min-height: 45vh;
+	width: 300px;
+	height: 300px;
 	background-image: url(${CTmodebutton});
 	background-repeat: no-repeat;
-	background-size: 90%;
+	background-size: 100%;
 	background-position: center center;
 	background-color: transparent;
 	border: none;
