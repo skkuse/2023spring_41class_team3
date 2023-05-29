@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
-import mainbgImage from 'assets/images/imagesource/MainPage_background.png';
-import PSmodebutton from 'assets/images/imagesource/MainPage_PSModeButton.png';
 import CTmodebutton from 'assets/images/imagesource/MainPage_CodingTestButton.png';
+import MODAL from 'components/Main/CodingTestModal';
 
 const DESCRIPTION1 = 'DevNAVI는 코딩 연습과 코딩 테스트 시뮬레이션을 제공하는 웹서비스입니다.';
 const DESCRIPTION2 =
@@ -29,23 +28,19 @@ const Body = styled.div`
 	margin: 20px 15px 30px 15px;
 	width: cover;
 	min-height: 45vh;
-	background-image: url(${mainbgImage});
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
 	border-radius: 60px;
 `;
 
-const SelectMode = styled.div`
-	line-height=100%;
-	text-align: center;
-	padding-top: 1rem;
-	font-size: 2.5rem;
-	font-weight: 600;
-	color: #3B3838;
-	width: cover;
-	height: 40%;
-`;
+// const SelectMode = styled.div`
+// 	line-height=100%;
+// 	text-align: center;
+// 	padding-top: 1rem;
+// 	font-size: 2.5rem;
+// 	font-weight: 600;
+// 	color: #3B3838;
+// 	width: cover;
+// 	height: 40%;
+// `;
 
 const ButtonContainer = styled.div`
 	width: 100%;
@@ -53,26 +48,12 @@ const ButtonContainer = styled.div`
 	text-align: center;
 `;
 
-const PSModeButton = styled.button`
-	margin: 1.5rem;
-	width: 40%;
-	min-height: 45vh;
-	background-image: url(${PSmodebutton});
-	background-repeat: no-repeat;
-	background-size: 85%;
-	background-position: center center;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	display: inline-block;
-`;
 const CTModeButton = styled.button`
-	margin: 1.5rem;
 	width: 40%;
 	min-height: 45vh;
 	background-image: url(${CTmodebutton});
 	background-repeat: no-repeat;
-	background-size: 85%;
+	background-size: 90%;
 	background-position: center center;
 	background-color: transparent;
 	border: none;
@@ -81,10 +62,9 @@ const CTModeButton = styled.button`
 `;
 
 function MainContainerFirst() {
-	const navigate = useNavigate();
-
-	const selectedCodingTestMode = () => {
-		navigate('/psselect');
+	const [isOpen, setIsOpen] = useState(false);
+	const onClickButton = () => {
+		setIsOpen(true);
 	};
 
 	return (
@@ -95,11 +75,17 @@ function MainContainerFirst() {
 				{DESCRIPTION2}
 			</Description>
 			<Body>
-				<SelectMode>SELECT MODE</SelectMode>
-				{/* <PSModeButton /> */}
 				<ButtonContainer>
-					<PSModeButton onClick={selectedCodingTestMode} />
-					<CTModeButton />
+					<CTModeButton onClick={onClickButton}>
+						{isOpen && (
+							<MODAL
+								open={isOpen}
+								onClose={() => {
+									setIsOpen(false);
+								}}
+							/>
+						)}
+					</CTModeButton>
 				</ButtonContainer>
 			</Body>
 		</IntroWrapper>
