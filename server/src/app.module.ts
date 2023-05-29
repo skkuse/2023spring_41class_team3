@@ -6,15 +6,16 @@ import { envConfig } from '@config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { mongooseConfig } from './config/mongoose.config';
 import { UserModule } from './user/user.module';
-import { OpenaiController } from './openai/openai.controller';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
 	imports: [
 		ConfigModule.forRoot(envConfig),
 		MongooseModule.forRootAsync(mongooseConfig),
 		UserModule,
+		FeedbackModule,
 	],
-	controllers: [AppController, OpenaiController],
+	controllers: [AppController],
 	providers: [AppService],
 })
 export class AppModule {}
