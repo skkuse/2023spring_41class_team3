@@ -43,10 +43,6 @@ const Content = styled.main`
 `;
 
 const SolveSection = styled.div`
-	// padding: 10px;
-	// background-color: #ecf1f4;
-	// border: 2px solid #b6c9d7;
-	// border-radius: 10px;
 	width: 55vw;
 	height: 80vh;
 	margin-left: 1%;

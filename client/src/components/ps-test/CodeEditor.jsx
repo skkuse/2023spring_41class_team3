@@ -1,27 +1,30 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import Editor from '@monaco-editor/react';
 import SplitPane, { Pane } from 'react-split-pane';
 
 import ButtonsBar from './ButtonsBar';
 
-const settings = {
-	language: 'javascript',
-	defaultValue: '// some comment',
-};
+const defualtCode = '// default code';
 
 function CodeEditor() {
+	const { language, theme } = useSelector(
+		(state) => state.contestProgress.contestProgress.editorInfo
+	);
+
 	return (
 		<div>
 			<Wrapper>
 				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="90%">
 					<Pane initialSize="75%" minSize="20%" maxSize="100%">
 						<Editor
-							defaultLanguage={settings.language}
-							defaultValue={settings.defaultValue}
-							theme="vs-dark"
+							defaultLanguage={language}
+							language={language}
+							defaultValue={defualtCode}
+							theme={theme}
 						/>
 					</Pane>
 					<Pane initialSize="25%" minSize="10%" maxSize="500px">
