@@ -9,18 +9,18 @@ const DESCRIPTION2 =
 	'DevNAVI와 함께 여러분의 코딩 실력을 향상시키고 개발자로의 꿈에 한발자국 더 다가가세요!';
 
 const IntroWrapper = styled.div`
-	justifycontent: center;
-	alignitems: center;
+	justify-content: center;
+	align-items: center;
 `;
 
 const Description = styled.div`
-	line-height=100%;
+	line-height: 100%;
 	text-align: center;
 	font-size: 1.1rem;
 	font-weight: bold;
-	color: #3B3838;
+	color: #3b3838;
 	width: cover;
-	margin: 1.5rem ;
+	margin: 1.5rem;
 	white-space: normal;
 `;
 
@@ -62,9 +62,14 @@ const CTModeButton = styled.button`
 `;
 
 function MainContainerFirst() {
-	const [isOpen, setIsOpen] = useState(false);
-	const onClickButton = () => {
-		setIsOpen(true);
+	const [isOpenModal, setIsOpenModal] = useState(false);
+
+	const handleOpenModal = () => {
+		setIsOpenModal(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsOpenModal(false);
 	};
 
 	return (
@@ -76,16 +81,8 @@ function MainContainerFirst() {
 			</Description>
 			<Body>
 				<ButtonContainer>
-					<CTModeButton onClick={onClickButton}>
-						{isOpen && (
-							<MODAL
-								open={isOpen}
-								onClose={() => {
-									setIsOpen(false);
-								}}
-							/>
-						)}
-					</CTModeButton>
+					<CTModeButton onClick={handleOpenModal} />
+					{isOpenModal && <MODAL close={handleCloseModal} />}
 				</ButtonContainer>
 			</Body>
 		</IntroWrapper>
