@@ -13,16 +13,16 @@ import {
 	OauthType,
 	HttpExceptionMsg,
 	CLIENT_DOMAIN,
-	GITHUB_CLIENT_ID,
-	GITHUB_CLIENT_SECRET,
+	OAUTH_GITHUB_CLIENT_ID,
+	OAUTH_GITHUB_CLIENT_SECRET,
 } from '@constant';
 
 @Injectable()
 export class GitHubOauth implements OauthService {
 	constructor(private readonly configService: ConfigService) {}
 
-	private clientId = this.configService.get<string>(GITHUB_CLIENT_ID);
-	private clientSecret = this.configService.get<string>(GITHUB_CLIENT_SECRET);
+	private clientId = this.configService.get<string>(OAUTH_GITHUB_CLIENT_ID);
+	private clientSecret = this.configService.get<string>(OAUTH_GITHUB_CLIENT_SECRET);
 	private redirectUri = this.configService.get<string>(CLIENT_DOMAIN) + GITHUB_REDIRECT_PATH;
 
 	getSocialUrl(): string {
