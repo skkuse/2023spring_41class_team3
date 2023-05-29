@@ -1,5 +1,6 @@
+import { ObjectId } from 'mongoose';
+
 export interface Problem {
-	problemN: number;
 	title: string;
 	difficulty: number;
 	tags: string[];
@@ -8,14 +9,15 @@ export interface Problem {
 }
 
 export interface MetaProblem {
-	problemN: string;
+	_id: string;
 	title: string;
 	difficulty: number;
 	tags: string[];
 }
 
 export interface ProblemDescription {
-	problemN: string;
+	_id: string;
+	title: string;
 	description: string;
 	constraint: string[];
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ProblemDocument } from '../entities/problem.entity';
-import { Problem } from '@type';
+import { MetaProblem, Problem } from '@type';
 import { CreateProblemDto } from '../dto/create-problem.dto';
 
 @Injectable()
@@ -18,15 +18,29 @@ export class ProblemRepository {
 		}
 	}
 
-	async findOne(id: number) {
+	async findOne(id: string): Promise<MetaProblem> {
 		try {
-			const problem = await this.problemModel.findOne({ problemN: id }).exec();
+			const problem = await this.problemModel.findOne({ _id: id }).exec();
 			return {
-				problemN: problem.problemN,
+				_id: problem._id.toString(),
 				title: problem.title,
 				difficulty: problem.difficulty,
 				tags: problem.tags,
 			};
+		} catch (error) {
+			throw new Error(error);
+		}
+	}
+
+	async getCodetestSet(difficulty: number, num: number): Promise<string[]> {
+		try {
+			const problems = await this.problemModel.find({ difficulty: difficulty }).exec();
+			while (problems.length > num) {
+				problems.splice(Math.floor(Math.random() * problems.length));
+			}
+			return problems.map((problem) => {
+				return problem._id.toString();
+			});
 		} catch (error) {
 			throw new Error(error);
 		}
