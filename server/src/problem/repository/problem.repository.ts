@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Error, Model } from 'mongoose';
 import { ProblemDocument } from '../entities/problem.entity';
 import { MetaProblem, Problem } from '@type';
 import { CreateProblemDto } from '../dto/create-problem.dto';
