@@ -2,7 +2,7 @@ name: client-deploy
 
 on:
   push:
-    branches: [25-cicd-및-배포]
+    branches: [dev]
     paths:
       - "client/**"
 
