@@ -20,19 +20,15 @@ const Overlay = styled.div`
 `;
 
 const ModalWrap = styled.dialog`
-	width: 45%;
+	width: 30%;
 	min-height: 45vh;
-	background: #ffffff;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
+	background: center center / cover no-repeat rgb(255, 255, 255);
 	border-radius: 30px;
-	border: 2px solid #d9d9d9;
+	border: 2px solid rgb(217, 217, 217);
 	position: absolute;
 	top: 50%;
-	left: 50%;
+	left: 30%;
 	transform: translate(-50%, -50%);
-	justify-content: center;
 	cursor: default;
 	display: block;
 `;
