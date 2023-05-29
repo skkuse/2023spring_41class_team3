@@ -18,7 +18,7 @@ export class ProblemRepository {
 		}
 	}
 
-	async findOne(id: string): Promise<MetaProblem> {
+	async findOne(id: string): Promise<Problem> {
 		try {
 			const problem = await this.problemModel.findOne({ _id: id }).exec();
 			return {
@@ -26,6 +26,8 @@ export class ProblemRepository {
 				title: problem.title,
 				difficulty: problem.difficulty,
 				tags: problem.tags,
+				description: problem.description,
+				constraint: problem.constraint,
 			};
 		} catch (error) {
 			throw new Error(error);

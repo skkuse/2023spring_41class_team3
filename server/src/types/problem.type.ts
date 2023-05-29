@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongoose';
 
 export interface Problem {
+	_id?: string;
 	title: string;
 	difficulty: number;
 	tags: string[];
