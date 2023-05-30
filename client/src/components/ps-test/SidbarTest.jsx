@@ -18,7 +18,7 @@ function SidebarTest({ numProblems, onSelectProblem }) {
 		for (let i = 0; i < num; i += 1) {
 			arr.push(
 				<MenuItem key={i} onClick={() => handleProblemSelect(i)}>
-					{i + 1}
+					{i + 1}번
 				</MenuItem>
 			);
 		}

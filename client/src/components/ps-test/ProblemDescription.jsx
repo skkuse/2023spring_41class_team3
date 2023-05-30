@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 function ProblemDescription({ title, description, constraint }) {
 	return (
 		<Wrapper>
-			<h1>{title}</h1>
-			<div>{description}</div>
+			<TitleWrapper>{title}</TitleWrapper>
+			<DescriptionWrapper>{description}</DescriptionWrapper>
 			<h3>Constraint</h3>
-			<div>{constraint}</div>
+			<ConstraintWrapper>
+				{constraint.map((c) => (
+					<div>{c}</div>
+				))}
+			</ConstraintWrapper>
 		</Wrapper>
 	);
 }
@@ -29,4 +33,17 @@ const Wrapper = styled.div`
 	width: 35vw;
 	height: 80vh;
 	margin-left: 1%;
+`;
+
+const TitleWrapper = styled.h1`
+	line-height: 1.5em;
+`;
+
+const DescriptionWrapper = styled.div`
+	line-height: 2em;
+	white-space: pre-wrap;
+`;
+
+const ConstraintWrapper = styled.div`
+	line-height: 2em;
 `;
