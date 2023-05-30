@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 // const QUESTION_TEXT = 'question text here from json';
 
 function ProblemDescription() {
-	const { language } = useSelector((state) => state.contestProgress.contestProgress.editorInfo);
+	const { theme } = useSelector((state) => state.contestProgress.contestProgress.editorInfo);
 
-	return <Wrapper>{`${language}`}</Wrapper>;
+	return <Wrapper>{`${theme}`}</Wrapper>;
 }
 
 export default ProblemDescription;

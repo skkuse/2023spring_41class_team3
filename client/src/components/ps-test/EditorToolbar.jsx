@@ -3,20 +3,18 @@ import React from 'react';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import styled from 'styled-components';
-import CountdownTimer from 'components/CountdownTimer';
+import ContestTimer from 'components/ps-test/ContestTimer';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLanguage, setTheme } from 'actions/setResults';
+import { setLanguage, setTheme } from 'actions/setContest';
 
 function EditorToolbar() {
-	const { focusNo } = useSelector((state) => state.contestProgress.contestProgress);
+	const dispatch = useDispatch();
 
+	const { focusNo } = useSelector((state) => state.contestProgress.contestProgress);
 	const { language } = useSelector(
 		(state) => state.contestProgress.contestProgress.problemInfo[focusNo - 1]
 	);
-
 	const { theme } = useSelector((state) => state.contestProgress.contestProgress.editorInfo);
-
-	const dispatch = useDispatch();
 
 	function changeLanguage(event) {
 		dispatch(setLanguage(focusNo, event.target.value));
@@ -28,13 +26,14 @@ function EditorToolbar() {
 
 	return (
 		<Wrapper>
-			<CountdownTimer />
+			<ContestTimer />
 			<SelectLabel>남은 시간: </SelectLabel>
 			<Select
 				sx={{ minWidth: '120px' }}
 				size="small"
 				style={{ margin: '0 ' }}
 				defaultValue={language}
+				value={language}
 				onChange={changeLanguage}
 			>
 				<MenuItem value="javascript">Javascript</MenuItem>

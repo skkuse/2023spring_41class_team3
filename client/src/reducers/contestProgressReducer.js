@@ -55,7 +55,7 @@ const initialState = {
 function contestProgressReducer(state = initialState, action) {
 	switch (action.type) {
 		// ------- 문제 설정 -------
-		// 초기 문제 설정 (검증 안됨)
+		// 초기 문제 설정 (구현 필요)
 		case 'PROGRESS_PROBLEM_SET':
 			return {
 				...state,
@@ -66,11 +66,22 @@ function contestProgressReducer(state = initialState, action) {
 			};
 
 		// 코드 자동 저장
-		case 'PROGRESS_UPDATE_USERCODE':
+		case 'PROGRESS_UPDATE_USERCODE': {
+			const { focusNo, userCode } = action.payload;
+			const updatedProblemInfo = state.contestProgress.problemInfo.map((problem, index) => {
+				if (index === focusNo - 1) {
+					return { ...problem, userCode };
+				}
+				return problem;
+			});
 			return {
 				...state,
-				contestProgress: {},
+				contestProgress: {
+					...state.contestProgress,
+					problemInfo: updatedProblemInfo,
+				},
 			};
+		}
 
 		// 문제 선택
 		case 'PROGRESS_FOCUS_NO':

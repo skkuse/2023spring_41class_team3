@@ -5,8 +5,8 @@ const initialState = {
 		difficulty: 1,
 		// 문제 수
 		problemNum: 2,
-		// 제한 시간
-		timeLimit: 10000,
+		// 제한 시간 (단위: ms)
+		timeLimit: 100000,
 	},
 };
 

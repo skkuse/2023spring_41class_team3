@@ -7,7 +7,7 @@ import SidebarInterview from 'components/interview/SidebarInterview';
 import QuestionSection from 'components/interview/QuestionSection';
 import AnswerSection from 'components/interview/AnswerSection';
 import SubmitButton from 'components/interview/SubmitButotn';
-import CountdownTimer from 'components/CountdownTimer';
+import InterviewTimer from 'components/interview/InterviewTimer';
 
 function InterviewPage() {
 	return (
@@ -21,7 +21,7 @@ function InterviewPage() {
 				</SectionWrapper>
 				<TimeButtonWrapper>
 					<SubmitButton />
-					<CountdownTimer />
+					<InterviewTimer />
 				</TimeButtonWrapper>
 			</Content>
 		</Wrapper>

@@ -22,6 +22,7 @@ module.exports = {
 		],
 		'default-param-last': 0,
 		'func-names': ['error', 'never'],
+		'no-use-before-define': ['error', { functions: false }],
 	},
 	settings: {
 		'import/resolver': {

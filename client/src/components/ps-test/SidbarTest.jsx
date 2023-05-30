@@ -1,4 +1,4 @@
-import { setFocusNo } from 'actions/setResults';
+import { setFocusNo } from 'actions/setContest';
 import React from 'react';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,7 +10,6 @@ const siderbarStyle = {
 
 function SidebarTest() {
 	const { problemNum } = useSelector((state) => state.contestSetting.contestSetting);
-	// const { focusNo } = useSelector((state) => state.contestProgress.contestProgress);
 
 	const problemList = Array.from({ length: problemNum }, (_, index) => index + 1);
 
