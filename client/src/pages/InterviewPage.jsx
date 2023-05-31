@@ -8,8 +8,11 @@ import QuestionSection from 'components/interview/QuestionSection';
 import AnswerSection from 'components/interview/AnswerSection';
 import SubmitButton from 'components/interview/SubmitButotn';
 import InterviewTimer from 'components/interview/InterviewTimer';
+import { fetchInterviewProblems } from 'actions/progressInterview';
 
 function InterviewPage() {
+	fetchInterviewProblems();
+
 	return (
 		<Wrapper>
 			<Header />

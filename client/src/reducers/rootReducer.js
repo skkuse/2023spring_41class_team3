@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
-import problemNoReducer from './problemNoReducer';
-import resultTypeReducer from './resultTypeReducer';
-import contestSettingReducer from './contestSettingReducer';
+import initContestReducer from './initContestReducer';
 import contestProgressReducer from './contestProgressReducer';
+import resultReducer from './resultRedcuer';
+import interviewReducer from './interviewReducer';
 
 const rootReducer = combineReducers({
-	contestSetting: contestSettingReducer,
+	contestSetting: initContestReducer,
 	contestProgress: contestProgressReducer,
-	problemNo: problemNoReducer,
-	resultType: resultTypeReducer,
+	contestResult: resultReducer,
+	interviewProgress: interviewReducer,
 });
 
 export default rootReducer;
