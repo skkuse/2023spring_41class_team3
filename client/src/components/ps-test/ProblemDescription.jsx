@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
-// const QUESTION_TEXT = 'question text here from json';
-
 function ProblemDescription() {
-	const { theme } = useSelector((state) => state.contestProgress.contestProgress.editorInfo);
+	const { focusNo, problemInfo } = useSelector((state) => state.contestProgress);
+	const { description } = problemInfo[focusNo - 1];
 
-	return <Wrapper>{`${theme}`}</Wrapper>;
+	return <Wrapper>{`${description}`}</Wrapper>;
 }
 
 export default ProblemDescription;

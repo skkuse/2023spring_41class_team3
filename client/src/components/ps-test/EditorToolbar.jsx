@@ -5,16 +5,14 @@ import MenuItem from '@mui/material/MenuItem';
 import styled from 'styled-components';
 import ContestTimer from 'components/ps-test/ContestTimer';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLanguage, setTheme } from 'actions/setContest';
+import { setLanguage, setTheme } from 'actions/progressContest';
 
 function EditorToolbar() {
 	const dispatch = useDispatch();
 
-	const { focusNo } = useSelector((state) => state.contestProgress.contestProgress);
-	const { language } = useSelector(
-		(state) => state.contestProgress.contestProgress.problemInfo[focusNo - 1]
-	);
-	const { theme } = useSelector((state) => state.contestProgress.contestProgress.editorInfo);
+	const { focusNo } = useSelector((state) => state.contestProgress);
+	const { language } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
+	const { theme } = useSelector((state) => state.contestProgress);
 
 	function changeLanguage(event) {
 		dispatch(setLanguage(focusNo, event.target.value));

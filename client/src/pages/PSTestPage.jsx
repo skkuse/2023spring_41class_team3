@@ -7,8 +7,11 @@ import SidebarTest from 'components/ps-test/SidbarTest';
 import ProblemDescription from 'components/ps-test/ProblemDescription';
 import CodeEditor from 'components/ps-test/CodeEditor';
 import EditorToolbar from 'components/ps-test/EditorToolbar';
+import { fetchContestProblems } from 'actions/progressContest';
 
 function PSTestPage() {
+	fetchContestProblems();
+
 	return (
 		<Wrapper>
 			<Header />

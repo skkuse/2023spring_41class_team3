@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Editor from '@monaco-editor/react';
 import SplitPane, { Pane } from 'react-split-pane';
 
-import { setUserCode } from 'actions/setContest';
+import { setUserCode } from 'actions/progressContest';
 import ButtonsBar from './ButtonsBar';
 
 const defualtCode = '// default code';
@@ -14,17 +14,10 @@ const defualtCode = '// default code';
 function CodeEditor() {
 	const dispatch = useDispatch();
 
-	const { focusNo } = useSelector((state) => state.contestProgress.contestProgress);
-
-	const { language } = useSelector(
-		(state) => state.contestProgress.contestProgress.problemInfo[focusNo - 1]
-	);
-
-	const { theme } = useSelector((state) => state.contestProgress.contestProgress.editorInfo);
-
-	const { userCode } = useSelector(
-		(state) => state.contestProgress.contestProgress.problemInfo[focusNo - 1]
-	);
+	const { focusNo } = useSelector((state) => state.contestProgress);
+	const { language } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
+	const { theme } = useSelector((state) => state.contestProgress);
+	const { userCode } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
 
 	function saveCode(event) {
 		dispatch(setUserCode(focusNo, event));
@@ -34,7 +27,7 @@ function CodeEditor() {
 		<div>
 			<Wrapper>
 				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="90%">
-					<Pane initialSize="75%" minSize="20%" maxSize="100%">
+					<Pane className="code-edit-area" initialSize="75%" minSize="20%" maxSize="100%">
 						<Editor
 							defaultLanguage={language}
 							language={language}
@@ -44,7 +37,7 @@ function CodeEditor() {
 							value={userCode}
 						/>
 					</Pane>
-					<Pane initialSize="25%" minSize="10%" maxSize="500px">
+					<Pane className="result-area" initialSize="25%" minSize="10%" maxSize="500px">
 						Run code result
 					</Pane>
 				</SplitPane>
