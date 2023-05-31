@@ -1,0 +1,29 @@
+{
+	"interviewProblems": [
+		{
+			"problemNo": 1,
+			"description": "질문 1. 가장 자신있는 프로그래밍 언어는 무엇이고, 해당 언어를 선택한 이유는 무엇인가요?",
+			"userResponse": ""
+		},
+		{
+			"problemNo": 2,
+			"description": "질문 2. 최근에 주목한 컴퓨터 과학 기술 혹은 트렌드는 무엇이며, 어떤 영향을 미칠 것으로 예상하나요?",
+			"userResponse": ""
+		},
+		{
+			"problemNo": 3,
+			"description": "질문 3. 프로젝트를 진행할 때 어떻게 문제를 해결하고, 협업하며 일정을 관리하나요?",
+			"userResponse": ""
+		},
+		{
+			"problemNo": 4,
+			"description": "질문 4. 어떤 프로젝트에서 가장 큰 기여를 한 경험이 있나요? 그 기여가 프로젝트에 어떤 영향을 미쳤는지 설명해주세요.",
+			"userResponse": ""
+		},
+		{
+			"problemNo": 5,
+			"description": "질문 5. 소프트웨어 개발 라이프사이클에 대해 설명해주세요",
+			"userResponse": ""
+		}
+	]
+}
