@@ -22,7 +22,23 @@ module.exports = {
 		],
 		'default-param-last': 0,
 		'func-names': ['error', 'never'],
-		'no-use-before-define': ['error', { functions: false }],
+		'no-use-before-define': [
+			'error',
+			{
+				functions: false,
+				variables: false,
+			},
+		],
+		'react/jsx-no-bind': [
+			'error',
+			{
+				allowArrowFunctions: true,
+				allowFunctions: true,
+				allowBind: true,
+			},
+		],
+		'no-console': 'off',
+		'no-alert': 'off',
 	},
 	settings: {
 		'import/resolver': {
