@@ -12,22 +12,6 @@ import LogosContainer from 'components/landing/LogosContainer';
 import LoginContainer from 'components/landing/LoginContainer';
 import { useAuthenticate } from 'hooks/auth';
 
-const Wrapper = styled.div`
-	width: 100%;
-	min-height: 100vh;
-
-	background-image: url(${bgImage});
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-`;
-
-const Content = styled.main`
-	margin: 0 10%;
-	display: flex;
-	flex-direction: column;
-`;
-
 function LandingPage() {
 	const authenticate = useAuthenticate();
 
@@ -50,3 +34,19 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
+const Wrapper = styled.div`
+	width: 100%;
+	min-height: 100vh;
+
+	background-image: url(${bgImage});
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+`;
+
+const Content = styled.main`
+	margin: 0 10%;
+	display: flex;
+	flex-direction: column;
+`;

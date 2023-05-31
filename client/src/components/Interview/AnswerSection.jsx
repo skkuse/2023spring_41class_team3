@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import userImg from 'assets/images/user.png';
 import AnswerTextField from './AnswerTextField';
 
-const userImgStyle = {
-	width: '41px',
-	height: '41px',
-};
-
 function AnswerSection() {
 	return (
 		<Wrapper>
@@ -18,6 +13,11 @@ function AnswerSection() {
 }
 
 export default AnswerSection;
+
+const userImgStyle = {
+	width: '41px',
+	height: '41px',
+};
 
 const Wrapper = styled.div`
 	background-color: #ecf1f4;

@@ -7,9 +7,9 @@ import ResultAnalysis from './ResultAnalysis';
 import ResultFeedback from './ResultFeedback';
 
 function ResultContent() {
-	const { resultType } = useSelector((state) => state.resultType);
+	const { focusType } = useSelector((state) => state.contestResult);
 
-	switch (resultType) {
+	switch (focusType) {
 		case 'readability':
 			return <ResultReadability />;
 		case 'timeComplexity':

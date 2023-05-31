@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { setProblemNo, setResultType } from 'actions/setResults';
+import { setResultFocusNo, setResultFocusType } from 'actions/showResult';
 
 const siderbarStyle = {
 	border: '2px solid #b6c9d7',
@@ -13,8 +13,8 @@ function SidebarContainer() {
 
 	function setResult(num, type) {
 		return function () {
-			dispatch(setProblemNo(num));
-			dispatch(setResultType(type));
+			dispatch(setResultFocusNo(num));
+			dispatch(setResultFocusType(type));
 		};
 	}
 

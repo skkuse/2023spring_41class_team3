@@ -5,9 +5,9 @@ import { monokai as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 const customStyle = {
 	width: '36vw',
-	height: '80vh',
+	height: '70vh',
 	overflow: 'auto',
-	textColor: 'white',
+	// textColor: 'white',
 };
 
 function CodeBox({ props }) {
@@ -16,10 +16,10 @@ function CodeBox({ props }) {
 			customStyle={customStyle}
 			language={props.language}
 			style={theme}
-			showLineNumbers={props.showLineNumbers}
-			startingLineNumber={props.startingLineNumber}
-			wrapLines={props.wrapLines}
-			wrapLongLines={props.wrapLongLines}
+			showLineNumbers
+			startingLineNumber={1}
+			wrapLines
+			wrapLongLines={false}
 		>
 			{props.code}
 		</SyntaxHighlighter>
