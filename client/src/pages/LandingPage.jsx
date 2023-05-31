@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Header from 'components/common/Header';
@@ -11,15 +11,22 @@ import IntroContainerSecond from 'components/landing/IntroContainerSecond';
 import LogosContainer from 'components/landing/LogosContainer';
 import LoginContainer from 'components/landing/LoginContainer';
 import { useAuthenticate } from 'hooks/auth';
+import Spinner from 'components/common/spinner';
 
 function LandingPage() {
+	const [isLoaded, setIsLoaded] = useState(true);
 	const authenticate = useAuthenticate();
 
 	useEffect(() => {
-		authenticate();
+		(async () => {
+			await authenticate();
+			setIsLoaded(false);
+		})();
 	}, []);
 
-	return (
+	return isLoaded ? (
+		<Spinner />
+	) : (
 		<Wrapper>
 			<Header />
 			<Content>

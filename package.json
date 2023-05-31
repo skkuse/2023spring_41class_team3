@@ -3,7 +3,6 @@
     "git-cz": "^4.9.0",
     "husky": "^8.0.0"
   },
-  "dependencies": {},
   "scripts": {
     "prepare": "husky install"
   },
