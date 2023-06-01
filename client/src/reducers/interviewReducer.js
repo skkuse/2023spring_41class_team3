@@ -1,3 +1,9 @@
+import {
+	INTERVIEW_FOCUS_NO,
+	INTERVIEW_SET_PROBLEMS,
+	INTERVIEW_UPDATE_RESPONSE,
+} from 'constant/state.constant';
+
 const initialState = {
 	// 선택한 문제 번호
 	focusNo: 1,
@@ -34,21 +40,21 @@ const initialState = {
 function interviewReducer(state = initialState, action) {
 	switch (action.type) {
 		// 서버로부터 받은 문제 상태 저장
-		case 'INTERVIEW_SET_PROBLEMS':
+		case INTERVIEW_SET_PROBLEMS:
 			return {
 				...state,
 				interviewProblems: action.payload,
 			};
 
 		// 문제 번호 선택
-		case 'INTERVIEW_FOCUS_NO':
+		case INTERVIEW_FOCUS_NO:
 			return {
 				...state,
 				focusNo: action.payload,
 			};
 
 		// 유저 응답 저장
-		case 'INTERVIEW_UPDATE_RESPONSE': {
+		case INTERVIEW_UPDATE_RESPONSE: {
 			const { focusNo, userResponse } = action.payload;
 			const updatedInterviewProblem = state.interviewProblems.map((problem, index) => {
 				if (index === focusNo - 1) {

@@ -6,6 +6,11 @@
 
 */
 import axios from 'axios';
+import {
+	CONTEST_DIFFICULTY,
+	CONTEST_PROBLEM_NUM,
+	CONTEST_TIME_LIMIT,
+} from 'constant/state.constant';
 
 // 난이도, 문제 수 post 하고 response 로 제한 시간 받음
 export function initContest(contestData) {
@@ -15,8 +20,7 @@ export function initContest(contestData) {
 			.then((response) => {
 				dispatch(setTimeLimit(response.timeLimit));
 			})
-			.catch((error) => {
-				console.log(error.message);
+			.catch(() => {
 				dispatch(setTimeLimit(100000));
 			});
 	};
@@ -25,7 +29,7 @@ export function initContest(contestData) {
 // 난이도
 export function setDifficulty(difficulty) {
 	return {
-		type: 'CONTEST_DIFFICULTY',
+		type: CONTEST_DIFFICULTY,
 		payload: difficulty,
 	};
 }
@@ -33,7 +37,7 @@ export function setDifficulty(difficulty) {
 // 문제 수
 export function setProblemNum(num) {
 	return {
-		type: 'CONTEST_PROBLEM_NUM',
+		type: CONTEST_PROBLEM_NUM,
 		payload: num,
 	};
 }
@@ -41,7 +45,7 @@ export function setProblemNum(num) {
 // 제한 시간
 export function setTimeLimit(timeLimit) {
 	return {
-		type: 'CONTEST_TIME_LIMIT',
+		type: CONTEST_TIME_LIMIT,
 		payload: timeLimit,
 	};
 }

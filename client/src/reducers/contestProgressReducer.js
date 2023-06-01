@@ -1,3 +1,11 @@
+import {
+	PROGRESS_FOCUS_NO,
+	PROGRESS_PROBLEM_SET,
+	PROGRESS_SET_LANGUAGE,
+	PROGRESS_SET_THEME,
+	PROGRESS_UPDATE_USERCODE,
+} from 'constant/state.constant';
+
 const initialState = {
 	// 테스트 진행 정보
 	focusNo: 1,
@@ -44,14 +52,14 @@ function contestProgressReducer(state = initialState, action) {
 	switch (action.type) {
 		// ------- 문제 설정 -------
 		// 초기 문제 설정
-		case 'PROGRESS_PROBLEM_SET':
+		case PROGRESS_PROBLEM_SET:
 			return {
 				...state,
 				problemInfo: action.payload,
 			};
 
 		// 코드 자동 저장
-		case 'PROGRESS_UPDATE_USERCODE': {
+		case PROGRESS_UPDATE_USERCODE: {
 			const { focusNo, userCode } = action.payload;
 			const updatedProblemInfo = state.problemInfo.map((problem, index) => {
 				if (index === focusNo - 1) {
@@ -66,14 +74,14 @@ function contestProgressReducer(state = initialState, action) {
 		}
 
 		// 문제 선택
-		case 'PROGRESS_FOCUS_NO':
+		case PROGRESS_FOCUS_NO:
 			return {
 				...state,
 				focusNo: action.payload,
 			};
 
 		// 언어 변경
-		case 'PROGRESS_SET_LANGUAGE': {
+		case PROGRESS_SET_LANGUAGE: {
 			const { focusNo, language } = action.payload;
 			const updatedProblemInfo = state.problemInfo.map((problem, index) => {
 				if (index === focusNo - 1) {
@@ -88,7 +96,7 @@ function contestProgressReducer(state = initialState, action) {
 		}
 		// ------- 에디터 설정 -------
 		// 테마 변경
-		case 'PROGRESS_SET_THEME':
+		case PROGRESS_SET_THEME:
 			return {
 				...state,
 				theme: action.payload,

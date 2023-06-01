@@ -1,3 +1,11 @@
+import {
+	RESULT_FETCH,
+	RESULT_FETCH_ANALYSIS,
+	RESULT_FETCH_FEEDBACK,
+	RESULT_FOCUS_NO,
+	RESULT_FOCUS_TYPE,
+} from 'constant/state.constant';
+
 const initialState = {
 	// 표시할 문제 번호
 	focusNo: 1,
@@ -43,29 +51,29 @@ const initialState = {
 function resultReducer(state = initialState, action) {
 	switch (action.type) {
 		// 문제 번호 선택
-		case 'RESULT_FOCUS_NO':
+		case RESULT_FOCUS_NO:
 			return {
 				...state,
 				focusNo: action.payload,
 			};
 		// 화면에 표시할 결과 선택
-		case 'RESULT_FOCUS_TYPE':
+		case RESULT_FOCUS_TYPE:
 			return {
 				...state,
 				focusType: action.payload,
 			};
 		// 서버로부터 받은 결과 저장
-		case 'RESULT_FETCH':
+		case RESULT_FETCH:
 			return {
 				...state,
 				results: action.payload,
 			};
-		case 'RESULT_FETCH_ANALYSIS':
+		case RESULT_FETCH_ANALYSIS:
 			return {
 				...state,
 				analysis: action.payload,
 			};
-		case 'RESULT_FETCH_FEEDBACK':
+		case RESULT_FETCH_FEEDBACK:
 			return {
 				...state,
 				feedback: action.payload,

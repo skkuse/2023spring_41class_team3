@@ -1,4 +1,11 @@
 import axios from 'axios';
+import {
+	RESULT_FETCH,
+	RESULT_FETCH_ANALYSIS,
+	RESULT_FETCH_FEEDBACK,
+	RESULT_FOCUS_NO,
+	RESULT_FOCUS_TYPE,
+} from 'constant/state.constant';
 import { useDispatch } from 'react-redux';
 
 // 서버에서 fetch
@@ -20,33 +27,33 @@ export function fetchResults() {
 // 서버로부터 받은 결과 저장
 export function setResult(results) {
 	return {
-		type: 'RESULT_FETCH',
+		type: RESULT_FETCH,
 		payload: results,
 	};
 }
 export function setAnalysis(analysis) {
 	return {
-		type: 'RESULT_FETCH_ANALYSIS',
+		type: RESULT_FETCH_ANALYSIS,
 		payload: analysis,
 	};
 }
 export function setFeedback(feedback) {
 	return {
-		type: 'RESULT_FETCH_FEEDBACK',
+		type: RESULT_FETCH_FEEDBACK,
 		payload: feedback,
 	};
 }
 
 export function setResultFocusNo(num) {
 	return {
-		type: 'RESULT_FOCUS_NO',
+		type: RESULT_FOCUS_NO,
 		payload: num,
 	};
 }
 
 export function setResultFocusType(type) {
 	return {
-		type: 'RESULT_FOCUS_TYPE',
+		type: RESULT_FOCUS_TYPE,
 		payload: type,
 	};
 }

@@ -1,3 +1,9 @@
+import {
+	CONTEST_DIFFICULTY,
+	CONTEST_PROBLEM_NUM,
+	CONTEST_TIME_LIMIT,
+} from 'constant/state.constant';
+
 const initialState = {
 	// 코딩 테스트 정보
 	// 난이도
@@ -10,17 +16,17 @@ const initialState = {
 
 function initContestReducer(state = initialState, action) {
 	switch (action.type) {
-		case 'CONTEST_DIFFICULTY':
+		case CONTEST_DIFFICULTY:
 			return {
 				...state,
 				difficulty: action.payload,
 			};
-		case 'CONTEST_PROBLEM_NUM':
+		case CONTEST_PROBLEM_NUM:
 			return {
 				...state,
 				problemNum: action.payload,
 			};
-		case 'CONTEST_TIME_LIMIT':
+		case CONTEST_TIME_LIMIT:
 			return {
 				...state,
 				timeLimit: action.payload,

@@ -11,13 +11,21 @@
 
 */
 import axios from 'axios';
+import {
+	PROGRESS_FOCUS_NO,
+	PROGRESS_PROBLEM_SET,
+	PROGRESS_SET_LANGUAGE,
+	PROGRESS_SET_THEME,
+	PROGRESS_UPDATE_USERCODE,
+} from 'constant/state.constant';
 import { useDispatch } from 'react-redux';
 
 // 서버에서 코딩 테스트 문제 정보 받기
-export function fetchContestProblems() {
+export function fetchContestProblems(difficulty, num) {
 	const dispatch = useDispatch();
 
 	axios
+		.get(`/api/problem?difficulty=${difficulty}&num=${num}`)
 		.get('http://localhost:3000/mockAPI/contestProblems.json')
 		.then((response) => {
 			console.log('Fetch success!!', response.data.problemInfo);
@@ -46,7 +54,7 @@ export function sendContestData(contestData) {
 // 문제 정보 입력 (미완성)
 export function setProblems(problemInfo) {
 	return {
-		type: 'PROGRESS_PROBLEM_SET',
+		type: PROGRESS_PROBLEM_SET,
 		payload: problemInfo,
 	};
 }
@@ -54,7 +62,7 @@ export function setProblems(problemInfo) {
 // 문제 풀 언어 선택
 export function setLanguage(focusNo, language) {
 	return {
-		type: 'PROGRESS_SET_LANGUAGE',
+		type: PROGRESS_SET_LANGUAGE,
 		payload: { focusNo, language },
 	};
 }
@@ -62,7 +70,7 @@ export function setLanguage(focusNo, language) {
 // 에디터 테마 선택
 export function setTheme(theme) {
 	return {
-		type: 'PROGRESS_SET_THEME',
+		type: PROGRESS_SET_THEME,
 		payload: theme,
 	};
 }
@@ -70,7 +78,7 @@ export function setTheme(theme) {
 // 문제 번호 선택
 export function setFocusNo(num) {
 	return {
-		type: 'PROGRESS_FOCUS_NO',
+		type: PROGRESS_FOCUS_NO,
 		payload: num,
 	};
 }
@@ -78,7 +86,7 @@ export function setFocusNo(num) {
 // 유저 코드 저장
 export function setUserCode(focusNo, userCode) {
 	return {
-		type: 'PROGRESS_UPDATE_USERCODE',
+		type: PROGRESS_UPDATE_USERCODE,
 		payload: { focusNo, userCode },
 	};
 }
