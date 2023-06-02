@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,15 +8,13 @@ import SplitPane, { Pane } from 'react-split-pane';
 import { setUserCode } from 'actions/progressContest';
 import ButtonsBar from './ButtonsBar';
 
-const defualtCode = '// default code';
-
 function CodeEditor() {
 	const dispatch = useDispatch();
 
-	const { focusNo } = useSelector((state) => state.contestProgress);
-	const { language } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
-	const { theme } = useSelector((state) => state.contestProgress);
-	const { userCode } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
+	const { focusNo, theme } = useSelector((state) => state.contestProgress);
+	const { userCode, language } = useSelector(
+		(state) => state.contestProgress.solveInfo[focusNo - 1]
+	);
 
 	function saveCode(event) {
 		dispatch(setUserCode(focusNo, event));
@@ -29,9 +26,8 @@ function CodeEditor() {
 				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="90%">
 					<Pane className="code-edit-area" initialSize="75%" minSize="20%" maxSize="100%">
 						<Editor
-							defaultLanguage={language}
+							// defaultLanguage={language}
 							language={language}
-							defaultValue={defualtCode}
 							theme={theme}
 							onChange={saveCode}
 							value={userCode}

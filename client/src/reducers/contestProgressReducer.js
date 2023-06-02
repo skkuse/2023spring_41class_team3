@@ -12,12 +12,14 @@ const initialState = {
 	// 문제 정보
 	problemInfo: [
 		{
-			// 문제 번호
-			problemNo: 1,
-			// 문제 Id
+			// 문제 id
 			id: 123123,
-			// 문제 설명
+			// 제목
+			title: 'Initial problem title1',
+			// 설명
 			description: '',
+			// 제한
+			constraint: [],
 			// 테스트 케이스
 			testcases: [
 				{
@@ -25,22 +27,36 @@ const initialState = {
 					output: '',
 				},
 			],
+		},
+	],
+	// 문제 풀이 정보
+	solveInfo: [
+		{
+			// 문제 번호
+			problemNo: 1,
 			// 언어 선택
 			language: 'c',
 			// 작성한 코드
-			userCode: '',
+			userCode: '#include <bits/stdc++.h>\n\nint main() {\n\t\n\treturn 0;\n}\n',
 		},
 		{
 			problemNo: 2,
-			id: 623634,
-			description: '',
-			testcases: [
-				{
-					input: '',
-					output: '',
-				},
-			],
-			language: 'python',
+			language: 'c',
+			userCode: '',
+		},
+		{
+			problemNo: 3,
+			language: 'c',
+			userCode: '',
+		},
+		{
+			problemNo: 4,
+			language: 'c',
+			userCode: '',
+		},
+		{
+			problemNo: 5,
+			language: 'c',
 			userCode: '',
 		},
 	],
@@ -50,7 +66,6 @@ const initialState = {
 
 function contestProgressReducer(state = initialState, action) {
 	switch (action.type) {
-		// ------- 문제 설정 -------
 		// 초기 문제 설정
 		case PROGRESS_PROBLEM_SET:
 			return {
@@ -61,15 +76,15 @@ function contestProgressReducer(state = initialState, action) {
 		// 코드 자동 저장
 		case PROGRESS_UPDATE_USERCODE: {
 			const { focusNo, userCode } = action.payload;
-			const updatedProblemInfo = state.problemInfo.map((problem, index) => {
+			const updatedSolveInfo = state.solveInfo.map((solve, index) => {
 				if (index === focusNo - 1) {
-					return { ...problem, userCode };
+					return { ...solve, userCode };
 				}
-				return problem;
+				return solve;
 			});
 			return {
 				...state,
-				problemInfo: updatedProblemInfo,
+				solveInfo: updatedSolveInfo,
 			};
 		}
 
@@ -83,18 +98,18 @@ function contestProgressReducer(state = initialState, action) {
 		// 언어 변경
 		case PROGRESS_SET_LANGUAGE: {
 			const { focusNo, language } = action.payload;
-			const updatedProblemInfo = state.problemInfo.map((problem, index) => {
+			const updatedSolveInfo = state.solveInfo.map((solve, index) => {
 				if (index === focusNo - 1) {
-					return { ...problem, language };
+					return { ...solve, language };
 				}
-				return problem;
+				return solve;
 			});
 			return {
 				...state,
-				problemInfo: updatedProblemInfo,
+				solveInfo: updatedSolveInfo,
 			};
 		}
-		// ------- 에디터 설정 -------
+
 		// 테마 변경
 		case PROGRESS_SET_THEME:
 			return {

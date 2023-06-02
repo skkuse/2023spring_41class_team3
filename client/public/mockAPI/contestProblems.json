@@ -1,56 +1,48 @@
 {
 	"problemInfo": [
 		{
-			"problemNo": 1,
 			"id": 123123,
-			"description": "첫 번째 문제",
+			"title": "Mock problem 1 title",
+			"description": "첫 번째 문제 설명",
 			"testcases": [
 				{
 					"input": "",
 					"output": ""
 				}
-			],
-			"language": "c",
-			"userCode": "//Test code 1"
+			]
 		},
 		{
-			"problemNo": 2,
 			"id": 623634,
+			"title": "Mock problem 2 title",
 			"description": "두 번째 문제",
 			"testcases": [
 				{
 					"input": "",
 					"output": ""
 				}
-			],
-			"language": "c",
-			"userCode": ""
+			]
 		},
 		{
-			"problemNo": 3,
 			"id": 9151,
+			"title": "Mock problem 3 title",
 			"description": "세 번째 문제",
 			"testcases": [
 				{
 					"input": "",
 					"output": ""
 				}
-			],
-			"language": "c",
-			"userCode": "#include <stdio.h>"
+			]
 		},
 		{
-			"problemNo": 4,
 			"id": 751792,
+			"title": "Mock problem 4 title",
 			"description": "네 번째 문제",
 			"testcases": [
 				{
 					"input": "",
 					"output": ""
 				}
-			],
-			"language": "c",
-			"userCode": ""
+			]
 		}
 	]
 }

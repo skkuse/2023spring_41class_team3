@@ -7,13 +7,13 @@ import { sendContestData } from 'actions/progressContest';
 function ButtonsBar() {
 	const userCodeList = useSelector((state) =>
 		state.contestProgress.problemInfo.map((item) => ({
-			problemNo: item.problemNo,
 			problemId: item.id,
-			language: item.language,
 			userCode: item.userCode,
+			language: item.language,
 		}))
 	);
 
+	// 최종 제출
 	function submitCode() {
 		sendContestData(userCodeList);
 	}
@@ -24,9 +24,6 @@ function ButtonsBar() {
 				<Button onClick={submitCode} variant="contained" color="primary" size="medium">
 					<BoldSpan>제출</BoldSpan>
 				</Button>
-				{/* <Button style={{ marginRight: '10px' }}>
-					<BoldSpan>Run Code</BoldSpan>
-				</Button> */}
 				<Button style={{ margin: '0 auto 0 0' }} variant="outlined">
 					<BoldSpan>Run Code</BoldSpan>
 				</Button>

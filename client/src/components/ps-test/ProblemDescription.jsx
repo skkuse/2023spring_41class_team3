@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 function ProblemDescription() {
-	const { focusNo, problemInfo } = useSelector((state) => state.contestProgress);
-	const { description } = problemInfo[focusNo - 1];
+	const { focusNo } = useSelector((state) => state.contestProgress);
+	const { description } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
 
 	return <Wrapper>{`${description}`}</Wrapper>;
 }

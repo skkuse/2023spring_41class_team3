@@ -10,9 +10,8 @@ import { setLanguage, setTheme } from 'actions/progressContest';
 function EditorToolbar() {
 	const dispatch = useDispatch();
 
-	const { focusNo } = useSelector((state) => state.contestProgress);
-	const { language } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
-	const { theme } = useSelector((state) => state.contestProgress);
+	const { focusNo, theme } = useSelector((state) => state.contestProgress);
+	const { language } = useSelector((state) => state.contestProgress.solveInfo[focusNo - 1]);
 
 	function changeLanguage(event) {
 		dispatch(setLanguage(focusNo, event.target.value));
@@ -44,6 +43,7 @@ function EditorToolbar() {
 				sx={{ minWidth: '80px' }}
 				size="small"
 				defaultValue={theme}
+				value={theme}
 				onChange={changeTheme}
 			>
 				<MenuItem value="light">light</MenuItem>

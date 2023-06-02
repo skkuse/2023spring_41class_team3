@@ -1,5 +1,5 @@
-import { setFocusNo } from 'actions/progressContest';
 import React from 'react';
+import { setFocusNo } from 'actions/progressContest';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { useSelector, useDispatch } from 'react-redux';
 
