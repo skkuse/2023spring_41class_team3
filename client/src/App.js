@@ -5,7 +5,7 @@ import LandingPage from 'pages/LandingPage';
 import ResultPage from 'pages/ResultPage';
 import InterviewPage from 'pages/InterviewPage';
 import PSTestPage from 'pages/PSTestPage';
-
+import MainPage from 'pages/MainPage';
 
 function App() {
 	return (

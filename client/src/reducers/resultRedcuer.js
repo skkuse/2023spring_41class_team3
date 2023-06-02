@@ -28,17 +28,11 @@ const initialState = {
 			improvedCode: '',
 		},
 		{
-			// 문제 번호
 			problemNo: 2,
-			// 제출한 언어
 			language: 'cpp',
-			// 제출 코드
 			userCode: '',
-			// 가독성
 			readability: '',
-			// 시간 복잡도
 			timeComplexity: '',
-			// 개선 코드
 			improvedCode: '',
 		},
 	],

@@ -34,7 +34,7 @@ module.exports = {
 				allowBind: true,
 			},
 		],
-		'no-console': 'off',
+		// 'no-console': 'off',
 		'no-alert': 'off',
 	},
 	settings: {
