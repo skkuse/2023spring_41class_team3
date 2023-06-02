@@ -20,7 +20,7 @@ export function fetchResults() {
 			dispatch(setFeedback(response.data.feedback));
 		})
 		.catch((error) => {
-			console.log('Failed to fetch result data, ', error.message);
+			alert(error.message);
 		});
 }
 

@@ -16,7 +16,7 @@ export function fetchInterviewProblems() {
 			dispatch(setInterviewProblems(response.data.interviewProblems));
 		})
 		.catch((error) => {
-			console.log('Failed to fetch interview data, ', error.message);
+			alert(error.message);
 		});
 }
 
@@ -25,10 +25,10 @@ export function sendInterviewResponse(interviewResponses) {
 	axios
 		.post('api/endpoint/면접-응답-제출', interviewResponses)
 		.then((response) => {
-			console.log('Successfully sent, ', response);
+			alert(response);
 		})
 		.catch((error) => {
-			console.log('Failed to send ', error.message);
+			alert(error.message);
 		});
 }
 
