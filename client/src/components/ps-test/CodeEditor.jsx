@@ -26,11 +26,15 @@ function CodeEditor() {
 				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="90%">
 					<Pane className="code-edit-area" initialSize="75%" minSize="20%" maxSize="100%">
 						<Editor
-							// defaultLanguage={language}
+							defaultLanguage={language}
 							language={language}
 							theme={theme}
 							onChange={saveCode}
 							value={userCode}
+							options={{
+								scrollBeyondLastLine: false,
+								fontSize: '15px',
+							}}
 						/>
 					</Pane>
 					<Pane className="result-area" initialSize="25%" minSize="10%" maxSize="500px">
