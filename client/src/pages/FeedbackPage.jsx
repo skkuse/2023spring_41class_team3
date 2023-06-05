@@ -2,29 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 
 import bgImage from 'assets/images/background/landing-background.jpg';
-
 import Header from 'components/common/Header';
-import SidebarContainer from 'components/result/SidebarContainer';
-import ResultContent from 'components/result/ResultContent';
-import { fetchResults } from 'actions/showResult';
+import SidebarFeedback from 'components/feedback/SidebarFeedback';
+import QuestionAnswerSection from 'components/feedback/QuestionAnswerSection';
+import FeedbackSection from 'components/feedback/FeedbackSection';
+import { fetchFeedbackData } from 'actions/progressFeedback';
+import { fetchInterviewProblems } from 'actions/progressInterview';
 
-function ResultPage() {
-	fetchResults();
+function FeedbackPage() {
+	fetchFeedbackData();
+	fetchInterviewProblems();
 
 	return (
 		<Wrapper>
 			<Header />
 			<Content>
-				<SidebarContainer />
+				<SidebarFeedback />
 				<SectionWrapper>
-					<ResultContent />
+					<QuestionAnswerSection />
+					<FeedbackSection />
 				</SectionWrapper>
 			</Content>
 		</Wrapper>
 	);
 }
 
-export default ResultPage;
+export default FeedbackPage;
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -43,6 +46,6 @@ const Content = styled.main`
 `;
 
 const SectionWrapper = styled.div`
-	width: 80vw;
+	width: 70vw;
 	margin: 0 2%;
 `;
