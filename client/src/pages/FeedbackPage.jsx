@@ -4,14 +4,12 @@ import styled from 'styled-components';
 import bgImage from 'assets/images/background/landing-background.jpg';
 import Header from 'components/common/Header';
 import SidebarFeedback from 'components/feedback/SidebarFeedback';
-import QuestionAnswerSection from 'components/feedback/QuestionAnswerSection';
+import QuestionSection from 'components/feedback/QuestionSection';
 import FeedbackSection from 'components/feedback/FeedbackSection';
 import { fetchFeedbackData } from 'actions/progressFeedback';
-import { fetchInterviewProblems } from 'actions/progressInterview';
 
 function FeedbackPage() {
 	fetchFeedbackData();
-	fetchInterviewProblems();
 
 	return (
 		<Wrapper>
@@ -19,7 +17,7 @@ function FeedbackPage() {
 			<Content>
 				<SidebarFeedback />
 				<SectionWrapper>
-					<QuestionAnswerSection />
+					<QuestionSection />
 					<FeedbackSection />
 				</SectionWrapper>
 			</Content>

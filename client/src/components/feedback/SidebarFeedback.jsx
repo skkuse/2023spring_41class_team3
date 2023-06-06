@@ -1,5 +1,4 @@
 import React from 'react';
-import { setInterviewFocusNo } from 'actions/progressInterview';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFeedbackFocusNo } from 'actions/progressFeedback';
@@ -13,7 +12,6 @@ function SidebarInterview() {
 
 	function focusInterviewProblem(num) {
 		return function () {
-			dispatch(setInterviewFocusNo(num));
 			dispatch(setFeedbackFocusNo(num));
 		};
 	}

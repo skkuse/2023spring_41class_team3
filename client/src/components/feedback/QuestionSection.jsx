@@ -2,25 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
-function QuestionAnswerSection() {
-	const { focusNo } = useSelector((state) => state.interviewProgress);
+function QuestionSection() {
+	const { focusNo } = useSelector((state) => state.feedbackProgress);
 	const { interviewProblems } = useSelector((state) => state.interviewProgress);
 
 	const question = interviewProblems[focusNo - 1].description;
-	const answer = interviewProblems[focusNo - 1].userResponse;
 
 	return (
 		<Wrapper>
-			<QuestionAnswerWrapper>
-				{question}
-				{'\n\n\n답변:\n'}
-				{answer}
-			</QuestionAnswerWrapper>
+			<QuestionAnswerWrapper>{question}</QuestionAnswerWrapper>
 		</Wrapper>
 	);
 }
 
-export default QuestionAnswerSection;
+export default QuestionSection;
 
 const Wrapper = styled.div`
 	padding: 10px;
