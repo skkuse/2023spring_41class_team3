@@ -7,6 +7,7 @@ import SidebarFeedback from 'components/feedback/SidebarFeedback';
 import QuestionSection from 'components/feedback/QuestionSection';
 import FeedbackSection from 'components/feedback/FeedbackSection';
 import { fetchFeedbackData } from 'actions/progressFeedback';
+import GotoMainButton from 'components/feedback/GotoMainButton';
 
 function FeedbackPage() {
 	fetchFeedbackData();
@@ -20,6 +21,9 @@ function FeedbackPage() {
 					<QuestionSection />
 					<FeedbackSection />
 				</SectionWrapper>
+				<ButtonWrapper>
+					<GotoMainButton />
+				</ButtonWrapper>
 			</Content>
 		</Wrapper>
 	);
@@ -46,4 +50,12 @@ const Content = styled.main`
 const SectionWrapper = styled.div`
 	width: 70vw;
 	margin: 0 2%;
+`;
+
+const ButtonWrapper = styled.div`
+	width: 6vw;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-start;
+	margin: 0 0 0.5% 2%;
 `;
