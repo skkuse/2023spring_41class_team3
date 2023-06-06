@@ -1,0 +1,24 @@
+{
+	"feedbackData": [
+		{
+			"problemNo": 1,
+            "feedback": "질문 1 피드백"
+		},
+		{
+			"problemNo": 2,
+            "feedback": "질문 2 피드백"
+		},
+		{
+			"problemNo": 3,
+            "feedback": "질문 3 피드백"
+		},
+		{
+			"problemNo": 4,
+            "feedback": "질문 4 피드백"
+		},
+		{
+			"problemNo": 5,
+            "feedback": "질문 5 피드백"
+		}
+	]
+}
