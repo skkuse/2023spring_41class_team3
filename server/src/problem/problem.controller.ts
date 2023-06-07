@@ -12,7 +12,7 @@ export class ProblemController {
 	}
 
 	@Get('')
-	getCodeSet(@Query('difficulty') difficulty: string, @Query('num') num: string) {
+	getCodeSetIDs(@Query('difficulty') difficulty: string, @Query('num') num: string) {
 		return this.problemRepository.getCodetestSet(+difficulty, +num);
 	}
 
