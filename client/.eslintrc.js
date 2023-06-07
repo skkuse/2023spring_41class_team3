@@ -14,8 +14,11 @@ module.exports = {
 		'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
 		'react/react-in-jsx-scope': 'off',
 		'react/prop-types': 'off',
-		'react/function-component-definition': [2, { namedComponents: ['function-declaration'] }],
 		'import/no-extraneous-dependencies': 'off',
+		'react/function-component-definition': [2, { namedComponents: ['function-declaration'] }],
+		'react/destructuring-assignment': [0, 'always'],
+		'default-param-last': 0,
+		'func-names': ['error', 'never'],
 	},
 	settings: {
 		'import/resolver': {

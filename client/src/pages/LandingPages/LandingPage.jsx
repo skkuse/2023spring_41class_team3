@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import Header from 'components/layout/Header';
-import Footer from 'components/layout/Footer';
+import Header from 'components/common/Header';
+import Footer from 'components/common/Footer';
 
 import bgImage from 'assets/images/background/landing-background.jpg';
 
@@ -11,6 +11,7 @@ import IntroContainerSecond from 'components/Landing/IntroContainerSecond';
 import LogosContainer from 'components/Landing/LogosContainer';
 import LoginContainer from 'components/Landing/LoginContainer';
 import { useAuthenticate } from 'hooks/auth';
+import Spinner from 'components/common/spinner';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -29,13 +30,19 @@ const Content = styled.main`
 `;
 
 function LandingPage() {
+	const [isLoaded, setIsLoaded] = useState(true);
 	const authenticate = useAuthenticate();
 
 	useEffect(() => {
-		authenticate();
+		(async () => {
+			await authenticate();
+			setIsLoaded(false);
+		})();
 	}, []);
 
-	return (
+	return isLoaded ? (
+		<Spinner />
+	) : (
 		<Wrapper>
 			<Header />
 			<Content>
