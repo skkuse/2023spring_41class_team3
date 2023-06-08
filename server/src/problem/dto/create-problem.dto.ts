@@ -4,4 +4,5 @@ export class CreateProblemDto {
 	tags: string[];
 	description: string;
 	constraint: string[];
+	testcases: object[];
 }

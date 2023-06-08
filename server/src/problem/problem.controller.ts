@@ -20,4 +20,9 @@ export class ProblemController {
 	findOne(@Param('id') id: string) {
 		return this.problemRepository.findOne(id);
 	}
+
+	@Get('codingtest')
+	getCodeSet(@Query('difficulty') difficulty: string, @Query('num') num: string) {
+		return;
+	}
 }
