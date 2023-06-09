@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ChatGPTAPI } from 'chatgpt';
-import { OPENAI_API_OPTIONS } from './openai.constant';
+import { OPENAI_API_OPTIONS } from '../constant/openai.constant';
 
 @Injectable()
 export class OpenaiService {
 	constructor(private readonly configService: ConfigService) {}
 
+	// Experimental Code
 	async sendExampleToChatGPT() {
 		const api = new ChatGPTAPI(OPENAI_API_OPTIONS);
 		const res = await api.sendMessage('Hello World!');
