@@ -11,14 +11,12 @@ export class OpenaiService {
 	async sendExampleToChatGPT() {
 		const api = new ChatGPTAPI(OPENAI_API_OPTIONS);
 		const res = await api.sendMessage('Hello World!');
-		console.log(res.text);
 		return res.text;
 	}
 
 	async sendToChatGPT(message: string) {
 		const api = new ChatGPTAPI(OPENAI_API_OPTIONS);
 		const res = await api.sendMessage(message);
-		console.log(res.text);
 		return res.text;
 	}
 
@@ -28,7 +26,6 @@ export class OpenaiService {
 		const res = await api.sendMessage(message, {
 			parentMessageId: id,
 		});
-		console.log(res.text);
 		return res.text;
 	}
 }
