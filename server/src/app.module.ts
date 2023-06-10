@@ -6,12 +6,14 @@ import { envConfig } from '@config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { mongooseConfig } from './config/mongoose.config';
 import { UserModule } from './user/user.module';
+import { ProblemModule } from './problem/problem.module';
 
 @Module({
 	imports: [
 		ConfigModule.forRoot(envConfig),
 		MongooseModule.forRootAsync(mongooseConfig),
 		UserModule,
+		ProblemModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
