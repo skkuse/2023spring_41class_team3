@@ -13,7 +13,7 @@ const initialState = {
 	problemInfo: [
 		{
 			// 문제 id
-			id: 123123,
+			id: '123123',
 			// 제목
 			title: 'Initial problem title1',
 			// 설명
@@ -23,8 +23,8 @@ const initialState = {
 			// 테스트 케이스
 			testcases: [
 				{
-					input: '',
-					output: '',
+					input: '1 2 2',
+					output: '5',
 				},
 			],
 		},
