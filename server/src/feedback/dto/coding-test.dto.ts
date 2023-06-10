@@ -1,4 +1,4 @@
-import { SolvedProblemDto } from './problem.dto';
+import { SolvedProblemDto } from './solved-problem.dto';
 
 export class CodingTestDto {
 	id: string;

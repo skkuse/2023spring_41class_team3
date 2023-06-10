@@ -27,4 +27,14 @@ export class FeedbackService {
 		}
 		return this.openaiService.sendToChatGPT(str);
 	}
+
+	getInterviewFeedback(question: string, userResponse: string) {
+		const str =
+			'The Interviewee responed, \n' +
+			userResponse +
+			"\n... to the Interviewer's question, \n" +
+			question +
+			'\n Was the question appropriately answered? If not, why?';
+		return this.openaiService.sendToChatGPT(str);
+	}
 }
