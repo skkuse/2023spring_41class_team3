@@ -1,0 +1,55 @@
+name: server-deploy
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - "server/**"
+
+jobs:
+  server-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Create Environment Variables
+        run: |
+          echo "CLIENT_DOMAIN=${{ secrets.CLIENT_DOMAIN }}" >> .env
+          echo "JWT_ACCESS_SECRET=${{ secrets.JWT_ACCESS_SECRET }}" >> .env
+          echo "MONGO_INITDB_DATABASE=${{ secrets.MONGO_INITDB_DATABASE }}" >> .env
+          echo "MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }}" >> .env
+          echo "MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}" >> .env
+          echo "MONGO_SERVER_IP=${{ secrets.MONGO_SERVER_IP }}" >> .env
+          echo "MONGO_SERVER_PORT=${{ secrets.MONGO_SERVER_PORT }}" >> .env
+          echo "ME_CONFIG_MONGODB_ADMINUSERNAME=${{ secrets.ME_CONFIG_MONGODB_ADMINUSERNAME }}" >> .env
+          echo "ME_CONFIG_MONGODB_ADMINPASSWORD=${{ secrets.ME_CONFIG_MONGODB_ADMINPASSWORD }}" >> .env
+          echo "ME_CONFIG_BASICAUTH_USERNAME=${{ secrets.ME_CONFIG_BASICAUTH_USERNAME }}" >> .env
+          echo "ME_CONFIG_BASICAUTH_PASSWORD=${{ secrets.ME_CONFIG_BASICAUTH_PASSWORD }}" >> .env
+          echo "OAUTH_GITHUB_CLIENT_ID=${{ secrets.OAUTH_GITHUB_CLIENT_ID }}" >> .env
+          echo "OAUTH_GITHUB_CLIENT_SECRET=${{ secrets.OAUTH_GITHUB_CLIENT_SECRET }}" >> .env
+
+      - name: Zip build directory
+        run: |
+          zip -r server.zip .
+
+      - name: Upload server.zip to S3
+        run: |
+          aws s3 cp server.zip s3://devnavi-deploy-bucket/server.zip
+
+      - name: Deploy to EC2 using CodeDeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name devnavi-deploy-app \
+            --deployment-group-name devnavi-deploy-server-group \
+            --s3-location bucket=devnavi-deploy-bucket,bundleType=zip,key=server.zip

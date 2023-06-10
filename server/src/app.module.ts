@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { mongooseConfig } from './config/mongoose.config';
 import { UserModule } from './user/user.module';
 import { FeedbackModule } from './feedback/feedback.module';
+import { ProblemModule } from './problem/problem.module';
 
 @Module({
 	imports: [
@@ -14,6 +15,7 @@ import { FeedbackModule } from './feedback/feedback.module';
 		MongooseModule.forRootAsync(mongooseConfig),
 		UserModule,
 		FeedbackModule,
+		ProblemModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
