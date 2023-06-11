@@ -1,8 +1,12 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, Req, Sse, UseGuards } from '@nestjs/common';
 import { CodingTestService } from '../service/coding-test.service';
 import { ProblemService } from 'src/problem/problem.service';
-import { TestProblemListDto } from '../dto/testProblemList.dto';
+import { TestInitDto } from '../dto/testInit.dto';
+import { JwtAuthGuard } from 'src/user/auth/guard/jwt.guard';
+import { Request } from 'express';
+import { OauthInfo } from '@type';
 
+@UseGuards(JwtAuthGuard)
 @Controller('coding-test')
 export class CodingTestController {
 	constructor(
@@ -10,8 +14,10 @@ export class CodingTestController {
 		private readonly problemService: ProblemService
 	) {}
 
-	@Get('problems')
-	async getTestProblemList(@Query() testProblemListDto: TestProblemListDto) {
-		return await this.problemService.getTestProblemList(testProblemListDto);
+	@Get('initiation')
+	async testIniticate(@Req() req: Request, @Query() testInitDto: TestInitDto) {
+		const { userId } = req.user as OauthInfo;
+		this.codingTestService.initiateTest(userId, Date.now(), testInitDto);
+		return await this.problemService.getTestProblemList(testInitDto);
 	}
 }

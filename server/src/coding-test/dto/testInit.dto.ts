@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsInt } from 'class-validator';
 
-export class TestProblemListDto {
+export class TestInitDto {
 	@IsInt()
 	@Type(() => Number)
 	difficulty: number;

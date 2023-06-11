@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ProblemRepository } from './repository/problem.repository';
 import { Problem } from '@type';
-import { TestProblemListDto } from 'src/coding-test/dto/testProblemList.dto';
+import { TestInitDto } from 'src/coding-test/dto/testInit.dto';
 
 @Injectable()
 export class ProblemService {
 	constructor(private readonly problemRepository: ProblemRepository) {}
 
-	async getTestProblemList({ difficulty, number }: TestProblemListDto) {
+	async getTestProblemList({ difficulty, number }: TestInitDto) {
 		const idList = await this.problemRepository.getRandomProblemIdList(difficulty, number);
 		const problemDataList = [];
 		await Promise.all(
