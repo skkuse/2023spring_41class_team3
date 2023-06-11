@@ -4,10 +4,13 @@ import styled from 'styled-components';
 import bgImage from 'assets/images/background/landing-background.jpg';
 
 import Header from 'components/common/Header';
-import SidebarContainer from 'components/Result/SidebarContainer';
-import ResultContent from 'components/Result/ResultContent';
+import SidebarContainer from 'components/result/SidebarContainer';
+import ResultContent from 'components/result/ResultContent';
+import { fetchResults } from 'actions/showResult';
 
 function ResultPage() {
+	fetchResults();
+
 	return (
 		<Wrapper>
 			<Header />
@@ -34,7 +37,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.main`
-	margin: 0 2%;
+	margin: 2% 2% 0 2%;
 	height: 80vh;
 	display: flex;
 `;

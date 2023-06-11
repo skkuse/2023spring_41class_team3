@@ -1,8 +1,8 @@
 import React from 'react';
 import DialogContent from './DialogContent';
 
-function ResultAnalysis() {
+function ResultReadability() {
 	return <DialogContent />;
 }
 
-export default ResultAnalysis;
+export default ResultReadability;

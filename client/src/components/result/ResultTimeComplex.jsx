@@ -1,8 +1,8 @@
 import React from 'react';
 import DialogContent from './DialogContent';
 
-function ResultAnalysis() {
+function ResultTimeComplex() {
 	return <DialogContent />;
 }
 
-export default ResultAnalysis;
+export default ResultTimeComplex;
