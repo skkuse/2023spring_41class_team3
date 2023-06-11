@@ -35,15 +35,13 @@ export class ProblemRepository {
 		}
 	}
 
-	async getRandomProblemIdList(difficulty: number, num: number): Promise<string[]> {
+	async getRandomProblemList(difficulty: number, num: number): Promise<Problem[]> {
 		try {
-			const problems = await this.problemModel.find({ difficulty: difficulty }).exec();
-			while (problems.length > num) {
-				problems.splice(Math.floor(Math.random() * problems.length));
-			}
-			return problems.map((problem) => {
-				return problem._id.toString();
-			});
+			const problemList: Problem[] = await this.problemModel.aggregate([
+				{ $match: { difficulty: difficulty } },
+				{ $sample: { size: num } },
+			]);
+			return problemList;
 		} catch (error) {
 			throw new Error(error);
 		}
