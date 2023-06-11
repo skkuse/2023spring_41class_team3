@@ -19,6 +19,7 @@ export class ProblemService {
 			description: problemData.description,
 			inputDescription: problemData.inputDescription,
 			outputDescription: problemData.outputDescription,
+			testcases: problemData.testcases,
 		}));
 	}
 }

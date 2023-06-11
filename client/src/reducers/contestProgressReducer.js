@@ -16,12 +16,19 @@ const initialState = {
 			id: '123123',
 			// 제목
 			title: 'Initial problem title1',
-			// 문제 설명
+			// 설명
 			description: '',
-			// Input 설명
+			// 입력
 			inputDescription: '',
-			// output 설명
+			// 출력
 			outputDescription: '',
+			// 테스트 케이스
+			testcases: [
+				{
+					input: '1 2 2',
+					output: '5',
+				},
+			],
 		},
 	],
 	// 문제 풀이 정보
