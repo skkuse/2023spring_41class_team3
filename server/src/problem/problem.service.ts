@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ProblemRepository } from './repository/problem.repository';
-import { Problem } from '@type';
 import { TestInitDto } from 'src/coding-test/dto/testInit.dto';
+import { Problem } from '@type';
 
 @Injectable()
 export class ProblemService {
@@ -13,16 +13,11 @@ export class ProblemService {
 			number
 		);
 
-		const res = { problemInfo: [] };
-		problemDataList.forEach((problemData: Problem) => {
-			res.problemInfo.push({
-				id: problemData._id,
-				title: problemData.title,
-				description: problemData.description,
-				constraint: problemData.constraint,
-			});
-		});
-
-		return res;
+		return problemDataList.map((problemData: Problem) => ({
+			id: problemData._id,
+			title: problemData.title,
+			description: problemData.description,
+			constraint: problemData.constraint,
+		}));
 	}
 }
