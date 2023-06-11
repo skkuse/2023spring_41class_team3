@@ -17,12 +17,7 @@ export class ProblemController {
 
 	@Get('')
 	getCodeSetIDs(@Query('difficulty') difficulty: string, @Query('num') num: string) {
-		return this.problemRepository.getCodetestSet(+difficulty, +num);
-	}
-
-	@Get('codingtest')
-	getCodeSet(@Query('difficulty') difficulty: string, @Query('num') num: string) {
-		return this.problemService.getCodingtestSet(+difficulty, +num);
+		return this.problemRepository.getRandomProblemIdList(+difficulty, +num);
 	}
 
 	@Get(':id')

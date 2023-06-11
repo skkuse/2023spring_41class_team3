@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Error, Model } from 'mongoose';
 import { ProblemDocument } from '../entities/problem.entity';
-import { MetaProblem, Problem } from '@type';
+import { Problem } from '@type';
 import { CreateProblemDto } from '../dto/create-problem.dto';
 
 @Injectable()
@@ -35,7 +35,7 @@ export class ProblemRepository {
 		}
 	}
 
-	async getCodetestSet(difficulty: number, num: number): Promise<string[]> {
+	async getRandomProblemIdList(difficulty: number, num: number): Promise<string[]> {
 		try {
 			const problems = await this.problemModel.find({ difficulty: difficulty }).exec();
 			while (problems.length > num) {
