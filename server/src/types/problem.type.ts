@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { testcase } from 'src/problem/dto/create-problem.dto';
 
 export interface Problem {
 	_id?: string;
@@ -6,8 +6,8 @@ export interface Problem {
 	difficulty: number;
 	tags: string[];
 	description: string;
-	constraint: string[];
-	testcases: object[];
+	constraint: string;
+	testcases: testcase[];
 }
 
 export interface MetaProblem {
@@ -21,6 +21,6 @@ export interface ProblemDescription {
 	_id: string;
 	title: string;
 	description: string;
-	constraint: string[];
-	testcases: object[];
+	constraint: string;
+	testcases: testcase[];
 }
