@@ -15,6 +15,7 @@ import { setTimeLimit } from 'actions/initContest';
 import PS_UNIT_TIME from 'constant/codingTest';
 
 function PSTestPage() {
+	const navigate = useNavigate();
 	const location = useLocation();
 	const { difficulty, number } = location.state;
 	const initCodingTest = useInitCodingTest(difficulty, number);
@@ -30,7 +31,7 @@ function PSTestPage() {
 			const eventSource = new EventSource(`/api/coding-test/termination/${testId}`);
 			eventSource.onmessage = ({ data }) => {
 				const { terminate } = JSON.parse(data);
-				if (terminate) useNavigate('/result');
+				if (terminate) navigate('/result');
 			};
 		})();
 	}, []);
