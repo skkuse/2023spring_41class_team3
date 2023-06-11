@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 function ProblemDescription() {
 	const { focusNo } = useSelector((state) => state.contestProgress);
-	const { description } = useSelector((state) => state.contestProgress.problemInfo[focusNo - 1]);
+	const { description } = useSelector((state) => state.contestProgress.problemList[focusNo - 1]);
 
 	return <Wrapper>{`${description}`}</Wrapper>;
 }

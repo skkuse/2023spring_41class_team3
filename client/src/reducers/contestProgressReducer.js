@@ -10,23 +10,18 @@ const initialState = {
 	// 테스트 진행 정보
 	focusNo: 1,
 	// 문제 정보
-	problemInfo: [
+	problemList: [
 		{
 			// 문제 id
 			id: '123123',
 			// 제목
 			title: 'Initial problem title1',
-			// 설명
+			// 문제 설명
 			description: '',
-			// 제한
-			constraint: [],
-			// 테스트 케이스
-			testcases: [
-				{
-					input: '1 2 2',
-					output: '5',
-				},
-			],
+			// Input 설명
+			inputDescription: '',
+			// output 설명
+			outputDescription: '',
 		},
 	],
 	// 문제 풀이 정보
@@ -70,7 +65,7 @@ function contestProgressReducer(state = initialState, action) {
 		case PROGRESS_PROBLEM_SET:
 			return {
 				...state,
-				problemInfo: action.payload,
+				problemList: action.payload,
 			};
 
 		// 코드 자동 저장

@@ -6,7 +6,7 @@ import { sendContestData } from 'actions/progressContest';
 
 function ButtonsBar() {
 	const userCodeList = useSelector((state) =>
-		state.contestProgress.problemInfo.map((item) => ({
+		state.contestProgress.problemList.map((item) => ({
 			problemId: item.id,
 			userCode: item.userCode,
 			language: item.language,
