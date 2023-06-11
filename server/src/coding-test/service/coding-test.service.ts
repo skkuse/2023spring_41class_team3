@@ -1,19 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { TestInitDto } from '../dto/testInit.dto';
 import { PS_UNIT_TIME } from '@constant';
+import { Observable } from 'rxjs';
+import { v4 } from 'uuid';
 
 @Injectable()
 export class CodingTestService {
-	private terminateTestMap = new Map<number, string[]>();
+	private testTimeMap = new Map<string, number>();
 
-	initiateTest(userId: string, initTime: number, testInitDto: TestInitDto) {
+	initiateTest(testInitDto: TestInitDto) {
 		const { difficulty, number } = testInitDto;
 		const testTime = difficulty * number * PS_UNIT_TIME;
-		const terminateTime = initTime + testTime;
-		if (this.terminateTestMap.has(terminateTime)) {
-			this.terminateTestMap.get(terminateTime).push(userId);
-		} else {
-			this.terminateTestMap.set(terminateTime, [userId]);
-		}
+		const testId = v4();
+		this.testTimeMap.set(testId, testTime);
+		return testId;
 	}
 }
