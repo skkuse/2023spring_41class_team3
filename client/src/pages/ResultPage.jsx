@@ -7,6 +7,8 @@ import Header from 'components/common/Header';
 import SidebarContainer from 'components/result/SidebarContainer';
 import ResultContent from 'components/result/ResultContent';
 import { fetchResults } from 'actions/showResult';
+import GotoMainButton from 'components/Result/GotoMainButton';
+import GotoInterviewButton from 'components/Result/GotoInterviewButton';
 
 function ResultPage() {
 	fetchResults();
@@ -19,6 +21,10 @@ function ResultPage() {
 				<SectionWrapper>
 					<ResultContent />
 				</SectionWrapper>
+				<ButtonWrapper>
+					<GotoMainButton />
+					<GotoInterviewButton />
+				</ButtonWrapper>
 			</Content>
 		</Wrapper>
 	);
@@ -45,4 +51,12 @@ const Content = styled.main`
 const SectionWrapper = styled.div`
 	width: 80vw;
 	margin: 0 2%;
+`;
+
+const ButtonWrapper = styled.div`
+	width: 7vw;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-start;
+	margin: 0 1.5% 0.5% 1%;
 `;
