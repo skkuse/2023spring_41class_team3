@@ -7,6 +7,7 @@ export interface Problem {
 	tags: string[];
 	description: string;
 	constraint: string[];
+	testcases: object[];
 }
 
 export interface MetaProblem {
@@ -21,4 +22,5 @@ export interface ProblemDescription {
 	title: string;
 	description: string;
 	constraint: string[];
+	testcases: object[];
 }

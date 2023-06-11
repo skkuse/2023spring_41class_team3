@@ -19,6 +19,9 @@ export class ProblemEntity {
 
 	@Prop({ required: true })
 	constraint: string[];
+
+	@Prop({ required: true })
+	testcases: object[];
 }
 
 export const ProblemSchema = SchemaFactory.createForClass(ProblemEntity);

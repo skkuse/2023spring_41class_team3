@@ -28,6 +28,7 @@ export class ProblemRepository {
 				tags: problem.tags,
 				description: problem.description,
 				constraint: problem.constraint,
+				testcases: problem.testcases,
 			};
 		} catch (error) {
 			throw new Error(error);
