@@ -19,4 +19,9 @@ export class CodingTestController {
 		const problemList = await this.problemService.getTestProblemList(testInitDto);
 		return { problemList, testId };
 	}
+
+	@Sse('termination/:testId')
+	testTerminate(@Param('testId') testId: string): Observable<MessageEvent> {
+		return this.codingTestService.terminateTest(testId);
+	}
 }
