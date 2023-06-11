@@ -19,7 +19,10 @@ export class ProblemEntity {
 	description: string;
 
 	@Prop({ required: true })
-	constraint: string;
+	inputDescription: string;
+
+	@Prop({ required: true })
+	outputDescription: string;
 
 	@Prop({ required: true })
 	testcases: testcase[];

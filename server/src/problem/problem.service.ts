@@ -17,7 +17,8 @@ export class ProblemService {
 			id: problemData._id,
 			title: problemData.title,
 			description: problemData.description,
-			constraint: problemData.constraint,
+			inputDescription: problemData.inputDescription,
+			outputDescription: problemData.outputDescription,
 		}));
 	}
 }

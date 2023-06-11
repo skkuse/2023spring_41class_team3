@@ -20,7 +20,11 @@ export class CreateProblemDto {
 
 	@IsNotEmpty()
 	@IsString()
-	constraint: string;
+	inputDescription: string;
+
+	@IsNotEmpty()
+	@IsString()
+	outputDescription: string;
 
 	@IsNotEmpty()
 	@ValidateNested({ each: true })

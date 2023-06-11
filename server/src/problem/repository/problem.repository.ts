@@ -27,7 +27,8 @@ export class ProblemRepository {
 				difficulty: problem.difficulty,
 				tags: problem.tags,
 				description: problem.description,
-				constraint: problem.constraint,
+				inputDescription: problem.inputDescription,
+				outputDescription: problem.outputDescription,
 				testcases: problem.testcases,
 			};
 		} catch (error) {
