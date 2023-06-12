@@ -24,18 +24,22 @@ function PSTestPage() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		let eventSource;
 		(async () => {
 			const { problemList, testId, remainTime } = await initCodingTest();
 			dispatch(setTimeLimit(remainTime));
 			dispatch(setProblems(problemList));
 
-			const eventSource = new EventSource(`/api/coding-test/termination/${testId}`);
+			eventSource = new EventSource(`/api/coding-test/termination/${testId}`);
 			eventSource.onmessage = ({ data }) => {
 				const { terminate } = JSON.parse(data);
 				if (terminate) navigate('/result');
 			};
 			setIsLoaded(false);
 		})();
+		return () => {
+			if (eventSource) eventSource.close();
+		};
 	}, []);
 
 	return isLoaded ? (
