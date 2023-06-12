@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button, createTheme, ThemeProvider } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { sendContestData } from 'actions/progressContest';
+import { useNavigate } from 'react-router-dom';
 
 function ButtonsBar() {
 	const userCodeList = useSelector((state) =>
@@ -13,9 +14,16 @@ function ButtonsBar() {
 		}))
 	);
 
+	const navigate = useNavigate();
+
+	const navigateToResult = () => {
+		navigate('/result');
+	};
+
 	// 최종 제출
 	function submitCode() {
 		sendContestData(userCodeList);
+		navigateToResult();
 	}
 
 	return (
