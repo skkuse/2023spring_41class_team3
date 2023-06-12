@@ -13,10 +13,6 @@ export class CaseResultDto {
 	isSuccess: boolean;
 
 	@IsNotEmpty()
-	@IsBoolean()
-	isError: boolean;
-
-	@IsNotEmpty()
 	@IsInt()
 	time: number;
 
@@ -28,14 +24,12 @@ export class CaseResultDto {
 		output: string | number,
 		testIdx: number,
 		isSuccess: boolean,
-		isError: boolean,
 		time: number,
 		message?: string
 	) {
 		this.output = output;
 		this.testIdx = testIdx;
 		this.isSuccess = isSuccess;
-		this.isError = isError;
 		this.time = time;
 		this.message = message;
 	}

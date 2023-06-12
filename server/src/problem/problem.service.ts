@@ -56,29 +56,26 @@ export class ProblemService {
 					(error, stdout, stderr) => {
 						const end = Date.now();
 						const time = end - start;
-						let isSuccess: boolean, isError: boolean, message: string;
+						let isSuccess: boolean, message: string;
 
 						if (error || stderr) {
 							isSuccess = false;
-							isError = true;
 							if (error.signal === 'SIGTERM') {
 								message = `time out: ${PS_TIME_OUT}ms`;
 							} else {
 								reject(stderr);
 							}
+						} else if (stdout != output) {
+							message = `mismatch output: ${stdout.trim()}`;
+							isSuccess = false;
 						} else {
-							isError = false;
-							if (stdout != output) {
-								message = `mismatch output: ${stdout.trim()}`;
-								isSuccess = false;
-							}
 							isSuccess = true;
 						}
+
 						const testResult = new CaseResultDto(
 							stdout.trim(),
 							testIdx,
 							isSuccess,
-							isError,
 							time,
 							message
 						);
