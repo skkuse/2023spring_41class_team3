@@ -38,40 +38,46 @@ export class ProblemService {
 		const runId = v4();
 		switch (language) {
 			case 'python':
-				const fileName = `${runId}.py`;
-				const command = `python3 ${fileName}`;
-				return this.runScriptTest({ code, testcases, fileName, command });
+				return this.runScriptTest({
+					code,
+					testcases,
+					runId,
+					ext: 'py',
+					command: 'python3',
+				});
 			case 'c':
-				return this.runClangTest({ code, testcases, runId, language });
+				return this.runClangTest({
+					code,
+					testcases,
+					runId,
+					ext: 'c',
+					compileCommand: 'gcc',
+				});
+			case 'cpp':
+				return this.runClangTest({
+					code,
+					testcases,
+					runId,
+					ext: 'cpp',
+					compileCommand: 'g++',
+				});
 			default:
 				throw new BadRequestException(HttpExceptionMsg.NOT_SUPPORTED_LANGUAGE);
 		}
 	}
 
-	async runClangTest({ code, testcases, runId, language }) {
-		let compiler: string;
-		switch (language) {
-			case 'c':
-				compiler = 'gcc';
-				break;
-			case 'cpp':
-				compiler = 'g++';
-				break;
-			default:
-				throw new BadRequestException(HttpExceptionMsg.NOT_SUPPORTED_LANGUAGE);
-		}
-
-		const fileName = `${runId}.${language}`;
-		const command = `./${runId}`;
+	async runClangTest({ code, testcases, runId, ext, compileCommand }) {
+		const fileName = `${runId}.${ext}`;
+		const script = `./${runId}`;
 		fs.writeFileSync(`./${fileName}`, code);
 		try {
-			execSync(`${compiler} -o ${runId} ${fileName}`);
+			execSync(`${compileCommand} -o ${runId} ${fileName}`);
 		} catch (err) {
 			return new TestResultDto({ code, run: false, message: String(err.stderr) });
 		}
 
 		const testList = testcases.map((testcase: testcase, testIdx: number) => {
-			return this.runTestCase({ testIdx, testcase, command });
+			return this.runTestCase({ testIdx, testcase, script });
 		});
 
 		try {
@@ -80,7 +86,7 @@ export class ProblemService {
 		} catch (err) {
 			return new TestResultDto({ code, run: false, message: err });
 		} finally {
-			fs.unlink(`./${runId}.${language}`, (err) => {
+			fs.unlink(`./${runId}.${ext}`, (err) => {
 				if (err) throw err;
 			});
 			fs.unlink(`./${runId}`, (err) => {
@@ -89,11 +95,13 @@ export class ProblemService {
 		}
 	}
 
-	async runScriptTest({ code, testcases, fileName, command }) {
+	async runScriptTest({ code, testcases, runId, ext, command }) {
+		const fileName = `${runId}.${ext}`;
+		const script = `${command} ${fileName}`;
 		fs.writeFileSync(`./${fileName}`, code);
 
 		const testList = testcases.map((testcase: testcase, testIdx: number) => {
-			return this.runTestCase({ testIdx, testcase, command });
+			return this.runTestCase({ testIdx, testcase, script });
 		});
 
 		try {
@@ -108,43 +116,39 @@ export class ProblemService {
 		}
 	}
 
-	runTestCase({ testIdx, testcase, command }): Promise<CaseResultDto> {
+	runTestCase({ testIdx, testcase, script }): Promise<CaseResultDto> {
 		const { input, output } = testcase;
 		return new Promise((resolve, reject) => {
 			const start = Date.now();
-			exec(
-				`echo ${input} | ${command}`,
-				{ timeout: PS_TIME_OUT },
-				(error, stdout, stderr) => {
-					const end = Date.now();
-					const time = end - start;
-					let isSuccess: boolean, message: string;
+			exec(`echo ${input} | ${script}`, { timeout: PS_TIME_OUT }, (error, stdout, stderr) => {
+				const end = Date.now();
+				const time = end - start;
+				let isSuccess: boolean, message: string;
 
-					if (error || stderr) {
-						isSuccess = false;
-						if (error.signal === 'SIGTERM') {
-							message = `time out: ${PS_TIME_OUT}ms`;
-						} else {
-							reject(stderr);
-						}
-					} else if (stdout != output) {
-						message = `mismatch output: ${stdout.trim()}`;
-						isSuccess = false;
+				if (error || stderr) {
+					isSuccess = false;
+					if (error.signal === 'SIGTERM') {
+						message = `time out: ${PS_TIME_OUT}ms`;
 					} else {
-						isSuccess = true;
+						reject(stderr);
 					}
-
-					const testResult = new CaseResultDto(
-						stdout.trim(),
-						testIdx,
-						isSuccess,
-						time,
-						message
-					);
-
-					resolve(testResult);
+				} else if (stdout != output) {
+					message = `mismatch output: ${stdout.trim()}`;
+					isSuccess = false;
+				} else {
+					isSuccess = true;
 				}
-			);
+
+				const testResult = new CaseResultDto(
+					stdout.trim(),
+					testIdx,
+					isSuccess,
+					time,
+					message
+				);
+
+				resolve(testResult);
+			});
 		});
 	}
 }
