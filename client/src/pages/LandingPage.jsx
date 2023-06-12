@@ -6,10 +6,10 @@ import Footer from 'components/common/Footer';
 
 import bgImage from 'assets/images/background/landing-background.jpg';
 
-import IntroContainerFirst from 'components/landing/IntroContainerFirst';
-import IntroContainerSecond from 'components/landing/IntroContainerSecond';
-import LogosContainer from 'components/landing/LogosContainer';
-import LoginContainer from 'components/landing/LoginContainer';
+import IntroContainerFirst from 'components/Landing/IntroContainerFirst';
+import IntroContainerSecond from 'components/Landing/IntroContainerSecond';
+import LogosContainer from 'components/Landing/LogosContainer';
+import LoginContainer from 'components/Landing/LoginContainer';
 import { useAuthenticate } from 'hooks/auth';
 import Spinner from 'components/common/spinner';
 
