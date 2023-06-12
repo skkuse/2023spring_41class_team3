@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import bgImage from 'assets/images/background/landing-background.jpg';
@@ -12,8 +12,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useInitCodingTest from 'hooks/codingTest';
 import { useDispatch } from 'react-redux';
 import { setTimeLimit } from 'actions/initContest';
+import Spinner from 'components/common/spinner';
 
 function PSTestPage() {
+	const [isLoaded, setIsLoaded] = useState(true);
+
 	const navigate = useNavigate();
 	const location = useLocation();
 	const { difficulty, number } = location.state;
@@ -31,10 +34,13 @@ function PSTestPage() {
 				const { terminate } = JSON.parse(data);
 				if (terminate) navigate('/result');
 			};
+			setIsLoaded(false);
 		})();
 	}, []);
 
-	return (
+	return isLoaded ? (
+		<Spinner />
+	) : (
 		<Wrapper>
 			<Header />
 			<EditorToolbar />
