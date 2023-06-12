@@ -119,7 +119,9 @@ function CodingTestModal({ close }) {
 	const navigate = useNavigate();
 
 	const handleStartCodingTest = () => {
-		navigate('/test');
+		navigate('/test', {
+			state: { difficulty: diffselected, number: probnumselected },
+		});
 	};
 
 	const handleOutsideClick = (e) => {
