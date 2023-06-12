@@ -9,5 +9,6 @@ import { ProblemService } from './problem.service';
 	imports: [MongooseModule.forFeature([{ name: 'Problem', schema: ProblemSchema }])],
 	controllers: [ProblemController],
 	providers: [ProblemRepository, ProblemService],
+	exports: [ProblemService],
 })
 export class ProblemModule {}
