@@ -101,12 +101,12 @@ const DropDownWrapper = styled.div`
 	justify-content: space-evenly;
 `;
 
-const problemDiffMenu = [1, 2, 3, 4, 5];
-const problemNumberMenu = [1, 2, 3, 4, 5];
+const problemDiffMenu = ['1 단계', '2 단계', '3 단계', '4 단계', '5 단계'];
+const problemNumberMenu = ['1 개', '2 개', '3 개', '4 개', '5 개'];
 
 function CodingTestModal({ close }) {
-	const [diffselected, setDiffSelected] = useState(1);
-	const [probnumselected, setProbNumSelected] = useState(1);
+	const [diffselected, setDiffSelected] = useState('1 단계');
+	const [probnumselected, setProbNumSelected] = useState('1 개');
 	const modalRef = React.useRef();
 
 	const handleDropDownDiff = (e) => {
@@ -140,7 +140,7 @@ function CodingTestModal({ close }) {
 								<Dropdown
 									options={problemDiffMenu}
 									onChange={handleDropDownDiff}
-									value={`${diffselected} 단계`}
+									value={`${diffselected}`}
 									placeholder="문제 난이도를 선택하세요"
 								/>
 							</DropDownWrapper>
@@ -151,7 +151,7 @@ function CodingTestModal({ close }) {
 								<Dropdown
 									options={problemNumberMenu}
 									onChange={handleDropDownProbNum}
-									value={`${probnumselected} 개`}
+									value={`${probnumselected}`}
 									placeholder="문제 수를 선택하세요"
 								/>
 							</DropDownWrapper>
