@@ -34,7 +34,7 @@ export class CodingTestService {
 		return { problemList, testId, remainTime };
 	}
 
-	terminateTest(userId: string, testId: string): Observable<MessageEvent> {
+	terminateTestTimer(userId: string, testId: string): Observable<MessageEvent> {
 		return new Observable((observer) => {
 			const testTime = this.testTerminateTimeMap.get(testId);
 
@@ -44,10 +44,17 @@ export class CodingTestService {
 
 			setTimeout(() => {
 				observer.next({ data: { terminate: true } } as MessageEvent);
-				this.userTestMap.delete(userId);
-				this.testTerminateTimeMap.delete(testId);
-				this.testProblemListMap.delete(testId);
+				this.terminateTest(userId);
 			}, this.testTerminateTimeMap.get(testId) - Date.now());
 		});
+	}
+
+	terminateTest(userId: string) {
+		const testId = this.userTestMap.get(userId);
+		if (testId) {
+			this.testTerminateTimeMap.delete(testId);
+			this.testProblemListMap.delete(testId);
+		}
+		return { terminate: true };
 	}
 }

@@ -21,9 +21,18 @@ export class CodingTestController {
 		return await this.codingTestService.initiateTest(oauthId, testInitDto);
 	}
 
-	@Sse('termination/:testId')
-	testTerminate(@Req() req: Request, @Param('testId') testId: string): Observable<MessageEvent> {
+	@Post('termination')
+	async testTerminate(@Req() req: Request) {
 		const { oauthId } = req.user as OauthInfo;
-		return this.codingTestService.terminateTest(oauthId, testId);
+		return this.codingTestService.terminateTest(oauthId);
+	}
+
+	@Sse('termination/:testId')
+	testTerminateTimer(
+		@Req() req: Request,
+		@Param('testId') testId: string
+	): Observable<MessageEvent> {
+		const { oauthId } = req.user as OauthInfo;
+		return this.codingTestService.terminateTestTimer(oauthId, testId);
 	}
 }
