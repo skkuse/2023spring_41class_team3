@@ -34,7 +34,7 @@ export class ProblemService {
 		);
 	}
 
-	async codeSubmit({ code, language, testcases }: ProblemTestDto) {
+	async testCaseSubmit({ code, language, testcases }: ProblemTestDto) {
 		const runId = v4();
 		switch (language) {
 			case 'python':
