@@ -21,6 +21,8 @@ function EditorToolbar() {
 		dispatch(setTheme(event.target.value));
 	}
 
+	const languageList = ['c', 'cpp', 'python', 'javascript'];
+
 	return (
 		<Wrapper>
 			<ContestTimer />
@@ -28,20 +30,20 @@ function EditorToolbar() {
 			<Select
 				sx={{ minWidth: '120px' }}
 				size="small"
-				style={{ margin: '0 ' }}
+				style={{ backgroundColor: '#fff' }}
 				defaultValue={language}
 				value={language}
 				onChange={changeLanguage}
 			>
-				<MenuItem value="javascript">Javascript</MenuItem>
-				<MenuItem value="c">C</MenuItem>
-				<MenuItem value="cpp">C++</MenuItem>
-				<MenuItem value="python">Python</MenuItem>
+				{languageList.map((lang) => (
+					<MenuItem value={lang}>{lang}</MenuItem>
+				))}
 			</Select>
-			<SelectLabel>Language</SelectLabel>
+			<SelectLabel>채점 언어</SelectLabel>
 			<Select
 				sx={{ minWidth: '80px' }}
 				size="small"
+				style={{ backgroundColor: '#fff' }}
 				defaultValue={theme}
 				value={theme}
 				onChange={changeTheme}
@@ -49,7 +51,7 @@ function EditorToolbar() {
 				<MenuItem value="light">light</MenuItem>
 				<MenuItem value="vs-dark">dark</MenuItem>
 			</Select>
-			<SelectLabel>Theme</SelectLabel>
+			<SelectLabel>테마</SelectLabel>
 		</Wrapper>
 	);
 }
