@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button, createTheme, ThemeProvider } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { sendContestData } from 'actions/progressContest';
+import axios from 'axios';
 
 function ButtonsBar() {
 	const userCodeList = useSelector((state) =>
@@ -12,6 +13,19 @@ function ButtonsBar() {
 			language: item.language,
 		}))
 	);
+
+	async function runCode() {
+		const body = {}; // selector 사용해서 { code, language, testcases } 형태로 보내야 함
+		const config = { 'Content-Type': 'application/json' };
+		const res = await axios.post('/api/problem/test', body, config);
+		// const { code, run, caseResultList, message } = res.data;
+		const { run } = res.data;
+		if (run === true) {
+			// TODO caseResultList를 이용하여 테스트 케이스 결과를 출력 (성공, 실패, 시간 초과 등)
+		} else {
+			// TODO message를 이용하여 오류 메시지 출력 (syntax error 등)
+		}
+	}
 
 	// 최종 제출
 	function submitCode() {
@@ -24,7 +38,7 @@ function ButtonsBar() {
 				<Button onClick={submitCode} variant="contained" color="primary" size="medium">
 					<BoldSpan>제출</BoldSpan>
 				</Button>
-				<Button style={{ margin: '0 auto 0 0' }} variant="outlined">
+				<Button onClick={runCode} style={{ margin: '0 auto 0 0' }} variant="outlined">
 					<BoldSpan>Run Code</BoldSpan>
 				</Button>
 			</ThemeProvider>
