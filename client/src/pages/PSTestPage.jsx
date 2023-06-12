@@ -9,7 +9,7 @@ import CodeEditor from 'components/ps-test/CodeEditor';
 import EditorToolbar from 'components/ps-test/EditorToolbar';
 import { setProblems } from 'actions/progressContest';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useInitCodingTest from 'hooks/codingTest';
+import { useInitCodingTest } from 'hooks/codingTest';
 import { useDispatch } from 'react-redux';
 import { setTimeLimit } from 'actions/initContest';
 import Spinner from 'components/common/spinner';
