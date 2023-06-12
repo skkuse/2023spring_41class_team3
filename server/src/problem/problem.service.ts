@@ -45,6 +45,14 @@ export class ProblemService {
 					ext: 'py',
 					command: 'python3',
 				});
+			case 'javascript':
+				return this.runScriptTest({
+					code,
+					testcases,
+					runId,
+					ext: 'js',
+					command: 'node',
+				});
 			case 'c':
 				return this.runClangTest({
 					code,
