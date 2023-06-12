@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { Button, createTheme, ThemeProvider } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { sendContestData } from 'actions/progressContest';
-import axios from 'axios';
+import useRunTestCode from 'hooks/problemSoving';
 
 function ButtonsBar() {
+	const runTestCode = useRunTestCode();
+
 	const userCodeList = useSelector((state) =>
 		state.contestProgress.problemList.map((item) => ({
 			problemId: item.id,
@@ -15,11 +17,9 @@ function ButtonsBar() {
 	);
 
 	async function runCode() {
-		const body = {}; // selector 사용해서 { code, language, testcases } 형태로 보내야 함
-		const config = { 'Content-Type': 'application/json' };
-		const res = await axios.post('/api/problem/test', body, config);
-		// const { code, run, caseResultList, message } = res.data;
-		const { run } = res.data;
+		// selector 사용해서 { code, language, testcases } 형태로 body를 보내야 함
+		// const { code, run, caseResultList, message } = await runTestCode({ code, language, testcases }); <- 이런 형태가 되어야 함
+		const { run } = await runTestCode();
 		if (run === true) {
 			// TODO caseResultList를 이용하여 테스트 케이스 결과를 출력 (성공, 실패, 시간 초과 등)
 		} else {
