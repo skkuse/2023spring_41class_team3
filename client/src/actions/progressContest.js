@@ -36,10 +36,10 @@ export function sendContestData(contestData) {
 }
 
 // 문제 정보 입력
-export function setProblems(problemInfo) {
+export function setProblems(problemList) {
 	return {
 		type: PROGRESS_PROBLEM_SET,
-		payload: problemInfo,
+		payload: problemList,
 	};
 }
 

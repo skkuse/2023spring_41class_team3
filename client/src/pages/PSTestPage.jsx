@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import bgImage from 'assets/images/background/landing-background.jpg';
@@ -7,12 +7,40 @@ import SidebarTest from 'components/ps-test/SidbarTest';
 import ProblemDescription from 'components/ps-test/ProblemDescription';
 import CodeEditor from 'components/ps-test/CodeEditor';
 import EditorToolbar from 'components/ps-test/EditorToolbar';
-import { fetchContestProblems } from 'actions/progressContest';
+import { setProblems } from 'actions/progressContest';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useInitCodingTest from 'hooks/codingTest';
+import { useDispatch } from 'react-redux';
+import { setTimeLimit } from 'actions/initContest';
+import Spinner from 'components/common/spinner';
 
 function PSTestPage() {
-	fetchContestProblems();
+	const [isLoaded, setIsLoaded] = useState(true);
 
-	return (
+	const navigate = useNavigate();
+	const location = useLocation();
+	const { difficulty, number } = location.state;
+	const initCodingTest = useInitCodingTest(difficulty, number);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		(async () => {
+			const { problemList, testId, remainTime } = await initCodingTest();
+			dispatch(setTimeLimit(remainTime));
+			dispatch(setProblems(problemList));
+
+			const eventSource = new EventSource(`/api/coding-test/termination/${testId}`);
+			eventSource.onmessage = ({ data }) => {
+				const { terminate } = JSON.parse(data);
+				if (terminate) navigate('/result');
+			};
+			setIsLoaded(false);
+		})();
+	}, []);
+
+	return isLoaded ? (
+		<Spinner />
+	) : (
 		<Wrapper>
 			<Header />
 			<EditorToolbar />

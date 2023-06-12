@@ -4,10 +4,8 @@ import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { useSelector, useDispatch } from 'react-redux';
 
 function SidebarTest() {
-	const { problemInfo } = useSelector((state) => state.contestProgress);
-	const problemNum = problemInfo.length;
-
-	const problemList = Array.from({ length: problemNum }, (_, index) => index + 1);
+	const { problemList } = useSelector((state) => state.contestProgress);
+	const problemNum = problemList.length;
 
 	const dispatch = useDispatch();
 
@@ -19,7 +17,7 @@ function SidebarTest() {
 	return (
 		<Sidebar style={siderbarStyle} width="90px">
 			<Menu>
-				{problemList.map((num) => (
+				{Array.from({ length: problemNum }, (_, index) => index + 1).map((num) => (
 					<MenuItem key={num} onClick={focusProblem(num)}>{`문제 ${num}`}</MenuItem>
 				))}
 			</Menu>

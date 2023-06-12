@@ -8,6 +8,7 @@ import { mongooseConfig } from './config/mongoose.config';
 import { UserModule } from './user/user.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { ProblemModule } from './problem/problem.module';
+import { CodingTestModule } from './coding-test/coding-test.module';
 
 @Module({
 	imports: [
@@ -16,6 +17,7 @@ import { ProblemModule } from './problem/problem.module';
 		UserModule,
 		FeedbackModule,
 		ProblemModule,
+		CodingTestModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
