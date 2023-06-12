@@ -12,7 +12,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useInitCodingTest from 'hooks/codingTest';
 import { useDispatch } from 'react-redux';
 import { setTimeLimit } from 'actions/initContest';
-import PS_UNIT_TIME from 'constant/codingTest';
 
 function PSTestPage() {
 	const navigate = useNavigate();
@@ -23,9 +22,8 @@ function PSTestPage() {
 
 	useEffect(() => {
 		(async () => {
-			const { problemList, testId } = await initCodingTest();
-			const testTime = difficulty * number * PS_UNIT_TIME;
-			dispatch(setTimeLimit(testTime));
+			const { problemList, testId, remainTime } = await initCodingTest();
+			dispatch(setTimeLimit(remainTime));
 			dispatch(setProblems(problemList));
 
 			const eventSource = new EventSource(`/api/coding-test/termination/${testId}`);
