@@ -13,7 +13,7 @@ function CommunicationSection() {
 	return (
 		<Wrapper>
 			<OpenAISvg />
-			<QuestionWrapper>{question}</QuestionWrapper>
+			<GPTWrapper>{question}</GPTWrapper>
 		</Wrapper>
 	);
 }
@@ -26,13 +26,14 @@ const Wrapper = styled.div`
 	border: 2px solid #b6c9d7;
 	border-radius: 10px;
 	width: 100%;
-	height: 60vh;
+	min-height: 60vh;
+	max-height: 60vh;
 `;
 
-const QuestionWrapper = styled.div`
-	padding: 10px;
+const GPTWrapper = styled.div`
+	padding: 15px;
 	background-color: #ecf1f4;
 	border: 2px dashed #b6c9d7;
 	border-radius: 10px;
-	height: 25vh;
+	width: 65%;
 `;

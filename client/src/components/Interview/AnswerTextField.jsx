@@ -22,8 +22,8 @@ function AnswerTextField() {
 			label="Answer"
 			variant="outlined"
 			multiline
-			minRows={10}
-			maxRows={10}
+			minRows={2}
+			maxRows={2}
 			margin="normal"
 			placeholder="답을 입력하세요"
 			value={userResponse}

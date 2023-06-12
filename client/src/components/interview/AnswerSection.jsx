@@ -1,30 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import userImg from 'assets/images/user.png';
-import AnswerTextField from './AnswerTextField';
+import AnswerTextField from 'components/interview/AnswerTextField';
+import SubmitButton from 'components/interview/SubmitButton';
 
 function AnswerSection() {
 	return (
 		<Wrapper>
-			<img style={userImgStyle} src={`${userImg}`} alt="user-icon" />
 			<AnswerTextField />
+			<SubmitButton />
 		</Wrapper>
 	);
 }
 
 export default AnswerSection;
 
-const userImgStyle = {
-	width: '41px',
-	height: '41px',
-};
-
 const Wrapper = styled.div`
+	display: flex;
+	align-items: center;
 	background-color: #ecf1f4;
 	border: 2px solid #b6c9d7;
 	border-radius: 10px;
 	width: 100%;
-	height: 35vh;
+	height: 11vh;
 	margin-top: 3%;
 	padding: 10px;
 `;
