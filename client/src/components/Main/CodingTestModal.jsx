@@ -101,12 +101,12 @@ const DropDownWrapper = styled.div`
 	justify-content: space-evenly;
 `;
 
-const problemDiffMenu = ['1 단계', '2 단계', '3 단계', '4 단계', '5 단계'];
-const problemNumberMenu = ['1 개', '2 개', '3 개', '4 개', '5 개'];
+const problemDiffMenu = [1, 2, 3, 4, 5];
+const problemNumberMenu = [1, 2, 3, 4, 5];
 
 function CodingTestModal({ close }) {
-	const [diffselected, setDiffSelected] = useState('1 단계');
-	const [probnumselected, setProbNumSelected] = useState('1 개');
+	const [diffselected, setDiffSelected] = useState(1);
+	const [probnumselected, setProbNumSelected] = useState(2);
 	const modalRef = React.useRef();
 
 	const handleDropDownDiff = (e) => {
