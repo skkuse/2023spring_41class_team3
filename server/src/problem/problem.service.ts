@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ProblemRepository } from './repository/problem.repository';
 import { TestInitDto } from 'src/coding-test/dto/testInit.dto';
 import { Problem } from '@type';
-import { exec } from 'child_process';
+import { exec, execSync } from 'child_process';
 import fs from 'fs';
 import { testcase } from './dto/create-problem.dto';
 import { ProblemTestDto } from './dto/problemTest.dto';
-import { PS_TIME_OUT } from '@constant';
+import { HttpExceptionMsg, PS_TIME_OUT } from '@constant';
 import { v4 } from 'uuid';
 import { CaseResultDto } from './dto/caseResult.dto';
 import { TestResultDto } from './dto/testResult.dto';
@@ -36,14 +36,56 @@ export class ProblemService {
 
 	async codeSubmit({ code, language, testcases }: ProblemTestDto) {
 		const runId = v4();
-		let fileName: string, command: string;
 		switch (language) {
 			case 'python':
-				fileName = `${runId}.py`;
-				command = `python3`;
+				const fileName = `${runId}.py`;
+				const command = `python3 ${fileName}`;
 				return this.runScriptTest({ code, testcases, fileName, command });
+			case 'c':
+				return this.runClangTest({ code, testcases, runId, language });
 			default:
-				return;
+				throw new BadRequestException(HttpExceptionMsg.NOT_SUPPORTED_LANGUAGE);
+		}
+	}
+
+	async runClangTest({ code, testcases, runId, language }) {
+		let compiler: string;
+		switch (language) {
+			case 'c':
+				compiler = 'gcc';
+				break;
+			case 'cpp':
+				compiler = 'g++';
+				break;
+			default:
+				throw new BadRequestException(HttpExceptionMsg.NOT_SUPPORTED_LANGUAGE);
+		}
+
+		const fileName = `${runId}.${language}`;
+		const command = `./${runId}`;
+		fs.writeFileSync(`./${fileName}`, code);
+		try {
+			execSync(`${compiler} -o ${runId} ${fileName}`);
+		} catch (err) {
+			return new TestResultDto({ code, run: false, message: String(err.stderr) });
+		}
+
+		const testList = testcases.map((testcase: testcase, testIdx: number) => {
+			return this.runTestCase({ testIdx, testcase, command });
+		});
+
+		try {
+			const caseResultList = await Promise.all(testList);
+			return new TestResultDto({ code, run: true, caseResultList });
+		} catch (err) {
+			return new TestResultDto({ code, run: false, message: err });
+		} finally {
+			fs.unlink(`./${runId}.${language}`, (err) => {
+				if (err) throw err;
+			});
+			fs.unlink(`./${runId}`, (err) => {
+				if (err) throw err;
+			});
 		}
 	}
 
@@ -51,7 +93,7 @@ export class ProblemService {
 		fs.writeFileSync(`./${fileName}`, code);
 
 		const testList = testcases.map((testcase: testcase, testIdx: number) => {
-			return this.runTestCase({ testIdx, testcase, fileName, command });
+			return this.runTestCase({ testIdx, testcase, command });
 		});
 
 		try {
@@ -66,12 +108,12 @@ export class ProblemService {
 		}
 	}
 
-	runTestCase({ testIdx, testcase, fileName, command }): Promise<CaseResultDto> {
+	runTestCase({ testIdx, testcase, command }): Promise<CaseResultDto> {
 		const { input, output } = testcase;
 		return new Promise((resolve, reject) => {
 			const start = Date.now();
 			exec(
-				`echo ${input} | ${command} ${fileName}`,
+				`echo ${input} | ${command}`,
 				{ timeout: PS_TIME_OUT },
 				(error, stdout, stderr) => {
 					const end = Date.now();
