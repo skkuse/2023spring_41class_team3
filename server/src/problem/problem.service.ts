@@ -4,13 +4,13 @@ import { TestInitDto } from 'src/coding-test/dto/testInit.dto';
 import { Problem } from '@type';
 import { exec, execSync } from 'child_process';
 import fs from 'fs';
-import { testcase } from './dto/create-problem.dto';
 import { ProblemTestDto } from './dto/problemTest.dto';
 import { HttpExceptionMsg, PS_TIME_OUT } from '@constant';
 import { v4 } from 'uuid';
 import { CaseResultDto } from './dto/caseResult.dto';
 import { TestResultDto } from './dto/testResult.dto';
 import { ProblemResponseDto } from './dto/problemResponse.dto';
+import { Testcase } from './dto/testCase.dto';
 
 @Injectable()
 export class ProblemService {
@@ -84,7 +84,7 @@ export class ProblemService {
 			return new TestResultDto({ code, run: false, message: String(err.stderr) });
 		}
 
-		const testList = testcases.map((testcase: testcase, testIdx: number) => {
+		const testList = testcases.map((testcase: Testcase, testIdx: number) => {
 			return this.runTestCase({ testIdx, testcase, script });
 		});
 
@@ -108,7 +108,7 @@ export class ProblemService {
 		const script = `${command} ${fileName}`;
 		fs.writeFileSync(`./${fileName}`, code);
 
-		const testList = testcases.map((testcase: testcase, testIdx: number) => {
+		const testList = testcases.map((testcase: Testcase, testIdx: number) => {
 			return this.runTestCase({ testIdx, testcase, script });
 		});
 

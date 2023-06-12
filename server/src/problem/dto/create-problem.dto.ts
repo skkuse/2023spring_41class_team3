@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsInt, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { Testcase } from './testCase.dto';
 
 export class CreateProblemDto {
 	@IsNotEmpty()
@@ -28,14 +29,6 @@ export class CreateProblemDto {
 
 	@IsNotEmpty()
 	@ValidateNested({ each: true })
-	@Type(() => testcase)
-	testcases: testcase[];
-}
-
-export class testcase {
-	@IsNotEmpty()
-	input: string | number;
-
-	@IsNotEmpty()
-	output: string | number;
+	@Type(() => Testcase)
+	testcases: Testcase[];
 }

@@ -1,4 +1,4 @@
-import { testcase } from 'src/problem/dto/create-problem.dto';
+import { Testcase } from 'src/problem/dto/testCase.dto';
 
 export interface Problem {
 	_id?: string;
@@ -8,5 +8,5 @@ export interface Problem {
 	description: string;
 	inputDescription: string;
 	outputDescription: string;
-	testcases: testcase[];
+	testcases: Testcase[];
 }
