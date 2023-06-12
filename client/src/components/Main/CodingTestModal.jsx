@@ -75,6 +75,7 @@ const UpdateTime = styled.div`
 	line-height: 3rem;
 	vertical-align: middle;
 	text-align: center;
+	white-space: pre-line;
 `;
 
 const StartCodingTestButton = styled.button`
@@ -106,7 +107,7 @@ const problemNumberMenu = [1, 2, 3, 4, 5];
 
 function CodingTestModal({ close }) {
 	const [diffselected, setDiffSelected] = useState(1);
-	const [probnumselected, setProbNumSelected] = useState(2);
+	const [probnumselected, setProbNumSelected] = useState(1);
 	const modalRef = React.useRef();
 
 	const handleDropDownDiff = (e) => {
@@ -157,7 +158,8 @@ function CodingTestModal({ close }) {
 							</DropDownWrapper>
 						</FormControl>
 						<UpdateTime>
-							예상 소요시간은{' '}
+							예상 소요시간은
+							{'\n'}
 							<span style={{ color: '#0089ff' }}>
 								{diffselected * probnumselected * 10}
 							</span>
