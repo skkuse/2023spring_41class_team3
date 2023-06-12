@@ -4,8 +4,8 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monokai as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const customStyle = {
-	width: '36vw',
-	height: '70vh',
+	width: '32vw',
+	height: '68vh',
 	overflow: 'auto',
 	// textColor: 'white',
 };
