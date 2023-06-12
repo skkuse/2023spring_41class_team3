@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import bgImage from 'assets/images/background/landing-background.jpg';
 
 import Header from 'components/common/Header';
-import SidebarContainer from 'components/Result/SidebarContainer';
-import ResultContent from 'components/Result/ResultContent';
+import SidebarContainer from 'components/result/SidebarContainer';
+import ResultContent from 'components/result/ResultContent';
 import { fetchResults } from 'actions/showResult';
-import GotoMainButton from 'components/Result/GotoMainButton';
-import GotoInterviewButton from 'components/Result/GotoInterviewButton';
+import GotoMainButton from 'components/result/GotoMainButton';
+import GotoInterviewButton from 'components/result/GotoInterviewButton';
 
 function ResultPage() {
 	fetchResults();
