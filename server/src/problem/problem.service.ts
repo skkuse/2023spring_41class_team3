@@ -10,6 +10,7 @@ import { PS_TIME_OUT } from '@constant';
 import { v4 } from 'uuid';
 import { CaseResultDto } from './dto/caseResult.dto';
 import { TestResultDto } from './dto/testResult.dto';
+import { ProblemResponseDto } from './dto/problemResponse.dto';
 
 @Injectable()
 export class ProblemService {
@@ -21,14 +22,16 @@ export class ProblemService {
 			number
 		);
 
-		return problemDataList.map((problemData: Problem) => ({
-			id: problemData._id,
-			title: problemData.title,
-			description: problemData.description,
-			inputDescription: problemData.inputDescription,
-			outputDescription: problemData.outputDescription,
-			testcases: problemData.testcases,
-		}));
+		return problemDataList.map(
+			(problemData: Problem): ProblemResponseDto => ({
+				id: problemData._id,
+				title: problemData.title,
+				description: problemData.description,
+				inputDescription: problemData.inputDescription,
+				outputDescription: problemData.outputDescription,
+				testcases: problemData.testcases,
+			})
+		);
 	}
 
 	async codeSubmit({ code, language, testcases }: ProblemTestDto) {
