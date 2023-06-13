@@ -52,6 +52,7 @@ export class CodingTestService {
 	terminateTest(userId: string) {
 		const testId = this.userTestMap.get(userId);
 		if (testId) {
+			this.userTestMap.delete(userId);
 			this.testTerminateTimeMap.delete(testId);
 			this.testProblemListMap.delete(testId);
 		}
