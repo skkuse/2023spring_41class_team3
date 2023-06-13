@@ -26,14 +26,13 @@ export const useTerminateCodingTest = () => {
 
 	const terminateCodingTest = async () => {
 		try {
-			const res = await axios.post('api/coding-test/termination');
-			return res.data;
+			await axios.post('api/coding-test/termination');
+			navigate('/result');
 		} catch (err) {
 			const { status } = err.response;
 			if (status === 401) {
 				navigate('/');
 			}
-			return null;
 		}
 	};
 	return terminateCodingTest;
