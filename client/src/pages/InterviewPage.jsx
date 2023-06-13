@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import bgImage from 'assets/images/background/landing-background.jpg';
 import Header from 'components/common/Header';
 import SidebarInterview from 'components/interview/SidebarInterview';
+import QuestionSection from 'components/interview/QuestionSection';
 import AnswerSection from 'components/interview/AnswerSection';
+import SubmitButton from 'components/interview/SubmitButton';
 import InterviewTimer from 'components/interview/InterviewTimer';
 import { fetchInterviewProblems } from 'actions/progressInterview';
-import CommunicationSection from 'components/interview/CommunicationSection';
-import NextQuestionButton from 'components/interview/NextQuestionButton';
 
 function InterviewPage() {
 	fetchInterviewProblems();
@@ -19,11 +19,11 @@ function InterviewPage() {
 			<Content>
 				<SidebarInterview />
 				<SectionWrapper>
-					<CommunicationSection />
+					<QuestionSection />
 					<AnswerSection />
 				</SectionWrapper>
 				<TimeButtonWrapper>
-					<NextQuestionButton />
+					<SubmitButton />
 					<InterviewTimer />
 				</TimeButtonWrapper>
 			</Content>
@@ -50,7 +50,7 @@ const Content = styled.main`
 `;
 
 const SectionWrapper = styled.div`
-	width: 75vw;
+	width: 70vw;
 	margin: 0 2%;
 `;
 

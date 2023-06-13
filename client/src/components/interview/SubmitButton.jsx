@@ -16,7 +16,7 @@ function SubmitButton() {
 		<ThemeProvider theme={theme}>
 			<Button
 				onClick={submitInterview}
-				style={{ marginLeft: '16px', marginRight: '10px', marginTop: '8px', height: '8vh' }}
+				style={{ marginTop: '5px' }}
 				variant="contained"
 				color="primary"
 				size="medium"
