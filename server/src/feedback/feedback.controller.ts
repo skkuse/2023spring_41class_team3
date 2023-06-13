@@ -1,10 +1,12 @@
 import { Body, Controller, Get } from '@nestjs/common';
 import { FeedbackService } from './feedback.service';
 import { UserCodeListDto } from './dto/usercode-list.dto';
-import { InterviewSetDto } from './dto/interview-set.dto';
 import axios from 'axios';
 import { CodeFeedbackSetDto } from './dto/codefeedback-set.dto';
 import { CodeFeedbackDto } from './dto/codefeedback.dto';
+import { InterviewSetDto } from './dto/interview-set.dto';
+import { InterviewFeedbackDto } from './dto/interview-feedback.dto';
+import { InterviewFeedbackSetDto } from './dto/interview-feedback-set.dto';
 
 @Controller('feedback')
 export class FeedbackController {
@@ -60,16 +62,27 @@ export class FeedbackController {
 		return strarr;
 	}
 
-	@Get('coding-test/interview')
+	@Get('coding-test/interview') // api/endpoint/면접-응답-제출
 	async interviewProblem(@Body() interviewSetDto: InterviewSetDto) {
-		const strarr = new Array(interviewSetDto.interviewData.length);
+		const interviewFeedbackDtoArray: InterviewFeedbackDto[] = new Array(
+			interviewSetDto.interviewData.length
+		);
+
 		for (let i = 0; interviewSetDto.interviewData.length; i++) {
-			const str = this.feedbackService.getInterviewFeedback(
-				interviewSetDto.interviewData[i].description,
-				interviewSetDto.interviewData[i].userResponse
-			);
-			strarr.push(str);
+			const interviewFeedbackDto: InterviewFeedbackDto = {
+				problemNo: i + 1,
+				feedback: await this.feedbackService.getInterviewFeedback(
+					interviewSetDto.interviewData[i].description,
+					interviewSetDto.interviewData[i].userResponse
+				),
+			};
+			interviewFeedbackDtoArray.push(interviewFeedbackDto);
 		}
-		return strarr;
+
+		const interviewFeedbackSetDto: InterviewFeedbackSetDto = {
+			interviewData: interviewFeedbackDtoArray,
+		};
+
+		axios.post('http://localhost:3000/mockAPI/feedbackData.json', interviewFeedbackSetDto); // Experimental
 	}
 }
