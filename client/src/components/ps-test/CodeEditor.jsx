@@ -23,7 +23,7 @@ function CodeEditor() {
 	return (
 		<div>
 			<Wrapper>
-				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="90%">
+				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="75%">
 					<Pane className="code-edit-area" initialSize="75%" minSize="20%" maxSize="100%">
 						<Editor
 							defaultLanguage={language}
