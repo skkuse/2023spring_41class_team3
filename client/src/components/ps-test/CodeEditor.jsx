@@ -7,9 +7,11 @@ import SplitPane, { Pane } from 'react-split-pane';
 
 import { setUserCode } from 'actions/progressContest';
 import ButtonsBar from './ButtonsBar';
+import TestResult from './testRsult';
 
 function CodeEditor() {
 	const dispatch = useDispatch();
+	const [testResult, setTestResult] = React.useState(null);
 
 	const { focusNo, theme } = useSelector((state) => state.contestProgress);
 	const { userCode, language } = useSelector(
@@ -23,7 +25,7 @@ function CodeEditor() {
 	return (
 		<div>
 			<Wrapper>
-				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="90%">
+				<SplitPane style={{ position: 'relative' }} split="horizontal" defaultSize="75%">
 					<Pane className="code-edit-area" initialSize="75%" minSize="20%" maxSize="100%">
 						<Editor
 							defaultLanguage={language}
@@ -38,11 +40,15 @@ function CodeEditor() {
 						/>
 					</Pane>
 					<Pane className="result-area" initialSize="25%" minSize="10%" maxSize="500px">
-						Run code result
+						{testResult ? (
+							<TestResult testResult={testResult} />
+						) : (
+							<div> Run Test </div>
+						)}
 					</Pane>
 				</SplitPane>
 			</Wrapper>
-			<ButtonsBar />
+			<ButtonsBar setTestResult={setTestResult} />
 		</div>
 	);
 }
