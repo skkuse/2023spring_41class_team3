@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import OpenAISvg from 'assets/images/logos/OpenAI-svg';
 import userImg from 'assets/images/user.png';
-import CodeBox from './CodeBox';
+import CodeBox from 'components/result/CodeBox';
 
 function ResultImproved() {
 	const { focusNo, results } = useSelector((state) => state.contestResult);
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
 	border: 2px solid #b6c9d7;
 	border-radius: 10px;
 	width: 100%;
-	height: 80vh;
+	height: 77.5vh;
 `;
 
 const FlexWrapper = styled.div`

@@ -79,6 +79,6 @@ const Content = styled.main`
 
 const SolveSection = styled.div`
 	width: 55vw;
-	height: 80vh;
+	height: 77.5vh;
 	margin-left: 1%;
 `;

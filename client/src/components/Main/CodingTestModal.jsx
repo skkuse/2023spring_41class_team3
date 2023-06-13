@@ -75,6 +75,7 @@ const UpdateTime = styled.div`
 	line-height: 3rem;
 	vertical-align: middle;
 	text-align: center;
+	white-space: pre-line;
 `;
 
 const StartCodingTestButton = styled.button`
@@ -142,7 +143,7 @@ function CodingTestModal({ close }) {
 								<Dropdown
 									options={problemDiffMenu}
 									onChange={handleDropDownDiff}
-									value={`${diffselected} 단계`}
+									value={`${diffselected}`}
 									placeholder="문제 난이도를 선택하세요"
 								/>
 							</DropDownWrapper>
@@ -153,13 +154,14 @@ function CodingTestModal({ close }) {
 								<Dropdown
 									options={problemNumberMenu}
 									onChange={handleDropDownProbNum}
-									value={`${probnumselected} 개`}
+									value={`${probnumselected}`}
 									placeholder="문제 수를 선택하세요"
 								/>
 							</DropDownWrapper>
 						</FormControl>
 						<UpdateTime>
-							예상 소요시간은{' '}
+							예상 소요시간은
+							{'\n'}
 							<span style={{ color: '#0089ff' }}>
 								{diffselected * probnumselected * 10}
 							</span>

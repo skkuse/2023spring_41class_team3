@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 import bgImage from 'assets/images/background/landing-background.jpg';
 import Header from 'components/common/Header';
-import SidebarInterview from 'components/Interview/SidebarInterview';
-import QuestionSection from 'components/Interview/QuestionSection';
-import AnswerSection from 'components/Interview/AnswerSection';
-import SubmitButton from 'components/Interview/SubmitButotn';
-import InterviewTimer from 'components/Interview/InterviewTimer';
+import SidebarInterview from 'components/interview/SidebarInterview';
+import QuestionSection from 'components/interview/QuestionSection';
+import AnswerSection from 'components/interview/AnswerSection';
+import SubmitButton from 'components/interview/SubmitButton';
+import InterviewTimer from 'components/interview/InterviewTimer';
 import { fetchInterviewProblems } from 'actions/progressInterview';
 
 function InterviewPage() {

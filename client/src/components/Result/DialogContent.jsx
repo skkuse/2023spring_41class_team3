@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 	border: 2px solid #b6c9d7;
 	border-radius: 10px;
 	width: 100%;
-	height: 75vh;
+	height: 77.5vh;
 `;
 
 const MessageWrapper = styled.div`
@@ -45,5 +45,7 @@ const MessageWrapper = styled.div`
 	background-color: #ecf1f4;
 	border: 2px dashed #b6c9d7;
 	border-radius: 10px;
-	height: 65vh;
+	min-height: 70vh;
+	max-height: 70vh;
+	overflow: auto;
 `;

@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, createTheme, ThemeProvider } from '@material-ui/core';
-// import { useSelector } from 'react-redux';
-// import { sendContestData } from 'actions/progressContest';
+import { useSelector } from 'react-redux';
+import { sendContestData } from 'actions/progressContest';
+import { useNavigate } from 'react-router-dom';
+
 import useRunTestCode from 'hooks/problemSoving';
 import { useSelector } from 'react-redux';
 import convertToEscapedString from 'utils/problem';
@@ -14,6 +16,12 @@ function ButtonsBar() {
 		(state) => state.contestProgress.solveInfo[focusNo - 1]
 	);
 	const { testcases } = useSelector((state) => state.contestProgress.problemList[problemNo - 1]);
+
+	const navigate = useNavigate();
+
+	const navigateToResult = () => {
+		navigate('/result');
+	};
 
 	async function runCode() {
 		const { code, run, caseResultList, message } = await runTestCode({
@@ -31,6 +39,13 @@ function ButtonsBar() {
 			// TODO message를 이용하여 오류 메시지 출력 (syntax error 등)
 		}
 	}
+
+	// 최종 제출
+	function submitCode() {
+		sendContestData(userCodeList);
+		navigateToResult();
+	}
+
 
 	return (
 		<ButtonsWrapper>

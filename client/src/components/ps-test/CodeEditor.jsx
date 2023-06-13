@@ -50,10 +50,10 @@ function CodeEditor() {
 export default CodeEditor;
 
 const Wrapper = styled.div`
-	// padding: 10px;
+	padding: 10px;
 	background-color: #ecf1f4;
 	border: 2px solid #b6c9d7;
 	border-radius: 10px;
 	font-size: 20px;
-	height: 75vh;
+	height: 71.8vh;
 `;
