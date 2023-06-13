@@ -6,9 +6,11 @@ import styled from 'styled-components';
 import ContestTimer from 'components/ps-test/ContestTimer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLanguage, setTheme } from 'actions/progressContest';
+import { useTerminateCodingTest } from 'hooks/codingTest';
 
 function EditorToolbar() {
 	const dispatch = useDispatch();
+	const terminateCodingTest = useTerminateCodingTest();
 
 	const { focusNo, theme } = useSelector((state) => state.contestProgress);
 	const { language } = useSelector((state) => state.contestProgress.solveInfo[focusNo - 1]);
@@ -25,6 +27,7 @@ function EditorToolbar() {
 
 	return (
 		<Wrapper>
+			<TerminateButton onClick={terminateCodingTest}>테스트 종료</TerminateButton>
 			<ContestTimer />
 			<SelectLabel>남은 시간: </SelectLabel>
 			<Select
@@ -68,4 +71,16 @@ const Wrapper = styled.div`
 const SelectLabel = styled.span`
 	font-size: 16px;
 	margin: 0 10px;
+`;
+
+const TerminateButton = styled.button`
+	height: 3rem;
+	width: 8rem;
+	background-color: #fff;
+	border: 1px solid #9e9e9e;
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: 500;
+	margin-left: 24px;
+	cursor: pointer;
 `;
