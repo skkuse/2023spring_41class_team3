@@ -28,6 +28,10 @@ export class FeedbackService {
 		return this.openaiService.sendToChatGPT(str);
 	}
 
+	getAnswerForString(str: string) {
+		return this.openaiService.sendToChatGPT(str);
+	}
+
 	getInterviewFeedback(question: string, userResponse: string) {
 		const str =
 			'The Interviewee responed, \n' +
