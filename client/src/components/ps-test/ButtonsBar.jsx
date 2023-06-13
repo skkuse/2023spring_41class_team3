@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import useRunTestCode from 'hooks/problemSoving';
 import convertToEscapedString from 'utils/problem';
 
-function ButtonsBar() {
+function ButtonsBar({ setTestResult }) {
 	const runTestCode = useRunTestCode();
 	const { focusNo } = useSelector((state) => state.contestProgress);
 	const { problemNo, language, userCode } = useSelector(
@@ -15,20 +15,12 @@ function ButtonsBar() {
 	const { testcases } = useSelector((state) => state.contestProgress.problemList[problemNo - 1]);
 
 	async function runCode() {
-		const { code, run, caseResultList, message } = await runTestCode({
+		const { run, caseResultList, message } = await runTestCode({
 			code: convertToEscapedString(userCode),
 			language,
 			testcases,
 		});
-		if (run === true) {
-			console.log(code);
-			console.log(caseResultList);
-			// TODO caseResultList를 이용하여 테스트 케이스 결과를 출력 (성공, 실패, 시간 초과 등)
-		} else {
-			console.log(code);
-			console.log(message);
-			// TODO message를 이용하여 오류 메시지 출력 (syntax error 등)
-		}
+		setTestResult({ run, caseResultList, message });
 	}
 
 	return (
