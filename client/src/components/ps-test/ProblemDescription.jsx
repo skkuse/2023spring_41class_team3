@@ -6,6 +6,7 @@ function ProblemDescription() {
 	const { focusNo } = useSelector((state) => state.contestProgress);
 	const { title, description, inputDescription, outputDescription } = useSelector(
 		(state) => state.contestProgress.problemInfo[focusNo - 1]
+
 	);
 
 	return (
@@ -27,6 +28,7 @@ function ProblemDescription() {
 				{outputDescription}
 				{'\n\n\n'}
 			</DescriptionWrapper>
+
 		</Wrapper>
 	);
 }

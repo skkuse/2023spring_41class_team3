@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const useInitCodingTest = (difficulty, number) => {
+export const useInitCodingTest = (difficulty, number) => {
 	const navigate = useNavigate();
 
 	const initCodingTest = async () => {
@@ -21,4 +21,19 @@ const useInitCodingTest = (difficulty, number) => {
 	return initCodingTest;
 };
 
-export default useInitCodingTest;
+export const useTerminateCodingTest = () => {
+	const navigate = useNavigate();
+
+	const terminateCodingTest = async () => {
+		try {
+			await axios.post('api/coding-test/termination');
+			navigate('/result');
+		} catch (err) {
+			const { status } = err.response;
+			if (status === 401) {
+				navigate('/');
+			}
+		}
+	};
+	return terminateCodingTest;
+};
