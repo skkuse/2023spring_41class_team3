@@ -23,6 +23,6 @@ export class ProblemController {
 
 	@Post('test')
 	problemTest(@Body() problemTestDto: ProblemTestDto) {
-		return this.problemService.codeSubmit(problemTestDto);
+		return this.problemService.testCaseSubmit(problemTestDto);
 	}
 }

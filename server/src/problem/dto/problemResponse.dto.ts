@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
-import { testcase } from './create-problem.dto';
 import { Type } from 'class-transformer';
+import { Testcase } from './testCase.dto';
 
 export class ProblemResponseDto {
 	@IsString()
@@ -24,8 +24,8 @@ export class ProblemResponseDto {
 
 	@IsNotEmpty()
 	@ValidateNested({ each: true })
-	@Type(() => testcase)
-	testcases: testcase[];
+	@Type(() => Testcase)
+	testcases: Testcase[];
 
 	constructor(
 		id: string,
@@ -33,7 +33,7 @@ export class ProblemResponseDto {
 		description: string,
 		inputDescription: string,
 		outputDescription: string,
-		testcases: testcase[]
+		testcases: Testcase[]
 	) {
 		this.id = id;
 		this.title = title;

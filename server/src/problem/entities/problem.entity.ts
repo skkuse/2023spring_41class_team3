@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { testcase } from '../dto/create-problem.dto';
+import { Testcase } from '../dto/testCase.dto';
 
 export type ProblemDocument = HydratedDocument<ProblemEntity>;
 
@@ -25,7 +25,7 @@ export class ProblemEntity {
 	outputDescription: string;
 
 	@Prop({ required: true })
-	testcases: testcase[];
+	testcases: Testcase[];
 }
 
 export const ProblemSchema = SchemaFactory.createForClass(ProblemEntity);

@@ -39,7 +39,7 @@ const initialState = {
 			// 언어 선택
 			language: 'c',
 			// 작성한 코드
-			userCode: '#include <bits/stdc++.h>\n\nint main() {\n\t\n\treturn 0;\n}\n',
+			userCode: '',
 		},
 		{
 			problemNo: 2,
