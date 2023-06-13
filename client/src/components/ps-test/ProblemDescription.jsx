@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 
 function ProblemDescription() {
 	const { focusNo } = useSelector((state) => state.contestProgress);
-	const { title, description, constraint } = useSelector(
-		(state) => state.contestProgress.problemInfo[focusNo - 1]
+	const { title, description } = useSelector(
+		(state) => state.contestProgress.problemList[focusNo - 1]
 	);
 
 	return (
@@ -17,12 +17,6 @@ function ProblemDescription() {
 				{'\n\n\n'}
 			</DescriptionWrapper>
 			<SubtitleWrapper>제한사항</SubtitleWrapper>
-			{constraint.map((c) => (
-				<ConstraintWrapper>
-					{'ㆍ   '}
-					{c}
-				</ConstraintWrapper>
-			))}
 		</Wrapper>
 	);
 }
@@ -53,9 +47,5 @@ const SubtitleWrapper = styled.div`
 
 const DescriptionWrapper = styled.div`
 	white-space: pre-line;
-	line-height: 185%;
-`;
-
-const ConstraintWrapper = styled.div`
 	line-height: 185%;
 `;
